@@ -10,6 +10,6 @@ This Swift iOS application allows users to pick an image to use as the basis of 
 
 There are no special setup instructions, just build and run!
 
-## Licsense
+## License
 
-The code in the repository is licsensed under the MIT Licsense.
+The code in the repository is licensed under the [MIT License](./LICENSE.txt).
