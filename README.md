@@ -14,4 +14,4 @@ There are no special setup instructions, just build and run!
 
 ## License
 
-The code in the repository is licensed under the [MIT License](./LICENSE.txt).
+The code in this repository is licensed under the [MIT License](./LICENSE.txt).
