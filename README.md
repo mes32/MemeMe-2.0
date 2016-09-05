@@ -1,5 +1,7 @@
 # MemeMe 1.0
 
+![Application Icon](./AppIcon.png)
+
 This repository contains the Udacity project **MemeMe 1.0** from the iOS Nanodegree.
 
 ## Overview
