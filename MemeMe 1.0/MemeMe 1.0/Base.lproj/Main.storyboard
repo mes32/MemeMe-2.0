@@ -31,11 +31,24 @@
                                             <barButtonItem style="plain" systemItem="action" id="pOt-xK-U4o"/>
                                         </items>
                                     </toolbar>
+                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nIn-jZ-RfO">
+                                        <rect key="frame" x="0.0" y="536" width="600" height="44"/>
+                                        <items>
+                                            <barButtonItem width="30" systemItem="fixedSpace" id="RFP-C2-1Af"/>
+                                            <barButtonItem systemItem="camera" id="fpb-En-9qK"/>
+                                            <barButtonItem systemItem="flexibleSpace" id="8Ip-3r-o7d"/>
+                                            <barButtonItem title="Photo Album" id="Rrs-7d-Xd8"/>
+                                            <barButtonItem width="30" systemItem="fixedSpace" id="GLB-ug-ZRS"/>
+                                        </items>
+                                    </toolbar>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="nQB-jR-oK4" firstAttribute="top" secondItem="7fV-Rc-PHm" secondAttribute="top" id="9pE-tt-RlV"/>
+                                    <constraint firstAttribute="bottom" secondItem="nIn-jZ-RfO" secondAttribute="bottom" id="JsD-m1-164"/>
+                                    <constraint firstAttribute="trailing" secondItem="nIn-jZ-RfO" secondAttribute="trailing" id="SaY-ig-y6c"/>
                                     <constraint firstAttribute="trailing" secondItem="nQB-jR-oK4" secondAttribute="trailing" id="YaD-t2-7Ct"/>
+                                    <constraint firstItem="nIn-jZ-RfO" firstAttribute="leading" secondItem="7fV-Rc-PHm" secondAttribute="leading" id="ntO-UN-5X8"/>
                                     <constraint firstItem="nQB-jR-oK4" firstAttribute="leading" secondItem="7fV-Rc-PHm" secondAttribute="leading" id="yMv-x0-0lQ"/>
                                 </constraints>
                             </view>
