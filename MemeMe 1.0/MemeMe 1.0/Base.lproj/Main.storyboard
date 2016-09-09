@@ -28,16 +28,28 @@
                                         </constraints>
                                         <items>
                                             <barButtonItem width="30" systemItem="fixedSpace" id="feb-Eu-E6F"/>
-                                            <barButtonItem style="plain" systemItem="action" id="pOt-xK-U4o"/>
+                                            <barButtonItem style="plain" systemItem="action" id="pOt-xK-U4o">
+                                                <connections>
+                                                    <action selector="pressedSaveButton:" destination="BYZ-38-t0r" id="Uau-Mk-GfD"/>
+                                                </connections>
+                                            </barButtonItem>
                                         </items>
                                     </toolbar>
                                     <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nIn-jZ-RfO">
                                         <rect key="frame" x="0.0" y="536" width="600" height="44"/>
                                         <items>
                                             <barButtonItem width="30" systemItem="fixedSpace" id="RFP-C2-1Af"/>
-                                            <barButtonItem systemItem="camera" id="fpb-En-9qK"/>
+                                            <barButtonItem systemItem="camera" id="fpb-En-9qK">
+                                                <connections>
+                                                    <action selector="pressedCameraButton:" destination="BYZ-38-t0r" id="ldN-GO-gEe"/>
+                                                </connections>
+                                            </barButtonItem>
                                             <barButtonItem systemItem="flexibleSpace" id="8Ip-3r-o7d"/>
-                                            <barButtonItem title="Photo Album" id="Rrs-7d-Xd8"/>
+                                            <barButtonItem title="Photo Album" id="Rrs-7d-Xd8">
+                                                <connections>
+                                                    <action selector="pressedPhotoAlbumButton:" destination="BYZ-38-t0r" id="0by-XA-V7c"/>
+                                                </connections>
+                                            </barButtonItem>
                                             <barButtonItem width="30" systemItem="fixedSpace" id="GLB-ug-ZRS"/>
                                         </items>
                                     </toolbar>
@@ -61,10 +73,15 @@
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="7fV-Rc-PHm" secondAttribute="bottom" id="vkl-Bq-Y24"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="backgroundView" destination="7fV-Rc-PHm" id="b7c-fH-puC"/>
+                        <outlet property="cameraButton" destination="fpb-En-9qK" id="92W-5s-OIC"/>
+                        <outlet property="saveButton" destination="pOt-xK-U4o" id="S0E-ku-5G3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="389" y="358"/>
+            <point key="canvasLocation" x="263" y="358"/>
         </scene>
     </scenes>
 </document>
