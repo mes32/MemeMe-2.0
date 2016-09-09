@@ -83,6 +83,7 @@
                     <connections>
                         <outlet property="backgroundView" destination="7fV-Rc-PHm" id="b7c-fH-puC"/>
                         <outlet property="cameraButton" destination="fpb-En-9qK" id="92W-5s-OIC"/>
+                        <outlet property="imageView" destination="bef-eF-0ly" id="r1W-Ki-PAT"/>
                         <outlet property="saveButton" destination="pOt-xK-U4o" id="S0E-ku-5G3"/>
                     </connections>
                 </viewController>
