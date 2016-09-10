@@ -53,20 +53,41 @@
                                             <barButtonItem width="50" systemItem="fixedSpace" id="GLB-ug-ZRS"/>
                                         </items>
                                     </toolbar>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="[Top MemeTextField]" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="N1B-V2-QTD">
+                                        <rect key="frame" x="0.0" y="100" width="600" height="70"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="70" id="q35-ls-Wwm"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="36"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="[Bottom MemeTextField]" textAlignment="center" minimumFontSize="36" translatesAutoresizingMaskIntoConstraints="NO" id="dCS-MY-dhN">
+                                        <rect key="frame" x="0.0" y="410" width="600" height="70"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="70" id="zdM-7H-63y"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="36"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bef-eF-0ly">
                                         <rect key="frame" x="0.0" y="44" width="600" height="492"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="N1B-V2-QTD" firstAttribute="leading" secondItem="7fV-Rc-PHm" secondAttribute="leading" id="35v-nk-RwP"/>
                                     <constraint firstItem="nQB-jR-oK4" firstAttribute="top" secondItem="7fV-Rc-PHm" secondAttribute="top" id="9pE-tt-RlV"/>
                                     <constraint firstItem="bef-eF-0ly" firstAttribute="leading" secondItem="7fV-Rc-PHm" secondAttribute="leading" id="CET-HU-0eE"/>
                                     <constraint firstAttribute="bottom" secondItem="nIn-jZ-RfO" secondAttribute="bottom" id="JsD-m1-164"/>
+                                    <constraint firstAttribute="bottom" secondItem="dCS-MY-dhN" secondAttribute="bottom" constant="100" id="LMy-qq-xfu"/>
                                     <constraint firstItem="nIn-jZ-RfO" firstAttribute="top" secondItem="bef-eF-0ly" secondAttribute="bottom" id="LPc-YG-mFc"/>
+                                    <constraint firstAttribute="trailing" secondItem="dCS-MY-dhN" secondAttribute="trailing" id="Ow1-Hq-8DZ"/>
+                                    <constraint firstItem="dCS-MY-dhN" firstAttribute="leading" secondItem="7fV-Rc-PHm" secondAttribute="leading" id="RVv-U5-WL9"/>
                                     <constraint firstAttribute="trailing" secondItem="nIn-jZ-RfO" secondAttribute="trailing" id="SaY-ig-y6c"/>
                                     <constraint firstAttribute="trailing" secondItem="nQB-jR-oK4" secondAttribute="trailing" id="YaD-t2-7Ct"/>
                                     <constraint firstAttribute="trailing" secondItem="bef-eF-0ly" secondAttribute="trailing" id="kIs-6Z-0DA"/>
                                     <constraint firstItem="nIn-jZ-RfO" firstAttribute="leading" secondItem="7fV-Rc-PHm" secondAttribute="leading" id="ntO-UN-5X8"/>
+                                    <constraint firstAttribute="trailing" secondItem="N1B-V2-QTD" secondAttribute="trailing" id="q9k-ik-NeU"/>
                                     <constraint firstItem="bef-eF-0ly" firstAttribute="top" secondItem="nQB-jR-oK4" secondAttribute="bottom" id="uE5-Ss-vKJ"/>
                                     <constraint firstItem="nQB-jR-oK4" firstAttribute="leading" secondItem="7fV-Rc-PHm" secondAttribute="leading" id="yMv-x0-0lQ"/>
                                 </constraints>
@@ -75,6 +96,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="7fV-Rc-PHm" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="1BX-xh-6dJ"/>
+                            <constraint firstItem="N1B-V2-QTD" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="100" id="CSQ-G5-WzW"/>
                             <constraint firstItem="7fV-Rc-PHm" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="Ubl-6b-0KX"/>
                             <constraint firstAttribute="trailingMargin" secondItem="7fV-Rc-PHm" secondAttribute="trailing" constant="-20" id="rOk-Yi-VNM"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="7fV-Rc-PHm" secondAttribute="bottom" id="vkl-Bq-Y24"/>
