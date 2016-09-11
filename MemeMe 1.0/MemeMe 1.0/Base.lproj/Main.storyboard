@@ -53,7 +53,7 @@
                                             <barButtonItem width="50" systemItem="fixedSpace" id="GLB-ug-ZRS"/>
                                         </items>
                                     </toolbar>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="[Top MemeTextField]" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="N1B-V2-QTD">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="[Top MemeTextField]" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="N1B-V2-QTD" customClass="MemeTextField" customModule="MemeMe_1_0" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="100" width="600" height="70"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="70" id="q35-ls-Wwm"/>
@@ -61,7 +61,7 @@
                                         <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="36"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="[Bottom MemeTextField]" textAlignment="center" minimumFontSize="36" translatesAutoresizingMaskIntoConstraints="NO" id="dCS-MY-dhN">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="[Bottom MemeTextField]" textAlignment="center" minimumFontSize="36" translatesAutoresizingMaskIntoConstraints="NO" id="dCS-MY-dhN" customClass="MemeTextField" customModule="MemeMe_1_0" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="410" width="600" height="70"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="70" id="zdM-7H-63y"/>
@@ -107,11 +107,13 @@
                         <outlet property="cameraButton" destination="fpb-En-9qK" id="92W-5s-OIC"/>
                         <outlet property="imageView" destination="bef-eF-0ly" id="r1W-Ki-PAT"/>
                         <outlet property="saveButton" destination="pOt-xK-U4o" id="S0E-ku-5G3"/>
+                        <outlet property="textFieldBottom" destination="dCS-MY-dhN" id="Vfu-az-naM"/>
+                        <outlet property="textFieldTop" destination="N1B-V2-QTD" id="Qsr-5e-YkC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="263" y="358"/>
+            <point key="canvasLocation" x="19" y="310"/>
         </scene>
     </scenes>
 </document>
