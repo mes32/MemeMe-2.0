@@ -57,6 +57,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             //backgroundView.backgroundColor = UIColor.blackColor()
             imageView.image = pickedImage
             imageView.sizeToFit()
+            //imageView.sizeThatFits(<#T##size: CGSize##CGSize#>)
         }
         
         dismissViewControllerAnimated(true, completion: nil)
