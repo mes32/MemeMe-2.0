@@ -10,8 +10,8 @@ import UIKit
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
+    @IBOutlet var backgroundView: UIView!
     @IBOutlet weak var imageView: UIImageView!
-    //@IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
 
@@ -29,6 +29,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        backgroundView.backgroundColor = UIColor.grayColor()
         
         imagePicker.delegate = self
         saveButton.enabled = false
@@ -54,7 +56,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            //backgroundView.backgroundColor = UIColor.blackColor()
+            backgroundView.backgroundColor = UIColor.blackColor()
             imageView.image = pickedImage
             imageView.sizeToFit()
             //imageView.sizeThatFits(<#T##size: CGSize##CGSize#>)
