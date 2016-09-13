@@ -30,6 +30,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.rotated), name: UIDeviceOrientationDidChangeNotification, object: nil)
+        
         backgroundView.backgroundColor = UIColor.grayColor()
         
         imagePicker.delegate = self
@@ -53,6 +55,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
         presentViewController(imagePicker, animated: true, completion: nil)
     }
+    
+    // Allow image picker to operate in landscape
+    // http://stackoverflow.com/questions/33058691/use-uiimagepickercontroller-in-landscape-mode-in-swift-2-0
+    /*extension UIImagePickerController {
+        public override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+            return .Landscape
+        }
+    }*/
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
@@ -89,7 +99,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         memeTextField.edited = true
         
         // Convert typed text to uppercase
-        // I grabbed this line from Stackoverflow: http://stackoverflow.com/questions/21092182/uppercase-characters-in-uitextfield
+        // The following line of code is from Stackoverflow: http://stackoverflow.com/questions/21092182/uppercase-characters-in-uitextfield
         memeTextField.text = (memeTextField.text! as NSString).stringByReplacingCharactersInRange(range, withString:string.uppercaseString)
         
         return false
@@ -100,5 +110,18 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         return false
     }
     
+    func rotated() {
+        // Respond to changes in device rotation
+        // The following two if statements are from Stackoverflow: http://stackoverflow.com/questions/25666269/ios8-swift-how-to-detect-orientation-change
+        
+        if(UIDeviceOrientationIsLandscape(UIDevice.currentDevice().orientation)) {
+            print(" - Landscape height = \(imageView.frame.height)")
+        }
+ 
+        if(UIDeviceOrientationIsPortrait(UIDevice.currentDevice().orientation)) {
+            print(" - Portrait height = \(imageView.frame.height)")
+        }
+    }
+
 }
 
