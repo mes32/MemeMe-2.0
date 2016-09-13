@@ -18,9 +18,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var textFieldTop: MemeTextField!
     @IBOutlet weak var textFieldBottom: MemeTextField!
     
-    //var isEmptyTop: Bool = true
-    //var isEmptyBottom: Bool = true
-    
     let startingTextTop = "TOP TEXT"
     let startingTextBottom = "BOTTOM TEXT"
     
@@ -31,8 +28,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.rotated), name: UIDeviceOrientationDidChangeNotification, object: nil)
-        
         backgroundView.backgroundColor = UIColor.grayColor()
         
         imagePicker.delegate = self
@@ -42,28 +37,19 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         textFieldTop.setup(defaultText: startingTextTop, delegate: textFieldDelegate)
         textFieldBottom.setup(defaultText: startingTextBottom, delegate: textFieldDelegate)
     }
-
-    @IBAction func pressedSaveButton(sender: AnyObject) {
-        print("Pressed save button")
+    
+    // Subscribe to keyboard notifications
+    // - START - from instructor notes
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        subscribeToKeyboardNotifications()
     }
     
-    @IBAction func pressedCameraButton(sender: AnyObject) {
-        print("Pressed camera button")
-        imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
-        presentViewController(imagePicker, animated: true, completion: nil)    }
-    
-    @IBAction func pressedPhotoAlbumButton(sender: AnyObject) {
-        imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-        presentViewController(imagePicker, animated: true, completion: nil)
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        unsubscribeFromKeyboardNotifications()
     }
-    
-    // Allow image picker to operate in landscape
-    // http://stackoverflow.com/questions/33058691/use-uiimagepickercontroller-in-landscape-mode-in-swift-2-0
-    /*extension UIImagePickerController {
-        public override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-            return .Landscape
-        }
-    }*/
+    // - STOP - from instructor notes
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
@@ -80,31 +66,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func rotated() {
-        // Respond to changes in device rotation
-        // The following two if statements are from Stackoverflow: http://stackoverflow.com/questions/25666269/ios8-swift-how-to-detect-orientation-change
-        
-        if(UIDeviceOrientationIsLandscape(UIDevice.currentDevice().orientation)) {
-            print(" - Landscape height = \(imageView.frame.height)")
-        }
- 
-        if(UIDeviceOrientationIsPortrait(UIDevice.currentDevice().orientation)) {
-            print(" - Portrait height = \(imageView.frame.height)")
-        }
-    }
-    
-    // Keyboard notifications
+    // Implement subscribe to keyboard notifications so that the view can move up to accomodate keyboard
     // - START - from instructor notes
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        subscribeToKeyboardNotifications()
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        unsubscribeFromKeyboardNotifications()
-    }
-    
     func subscribeToKeyboardNotifications() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
@@ -134,5 +97,41 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     // - STOP - from instructor notes
 
+    @IBAction func pressedSaveButton(sender: AnyObject) {
+        print("Pressed save button")
+    }
+    
+    @IBAction func pressedCameraButton(sender: AnyObject) {
+        print("Pressed camera button")
+        imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
+        presentViewController(imagePicker, animated: true, completion: nil)    }
+    
+    @IBAction func pressedPhotoAlbumButton(sender: AnyObject) {
+        imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        presentViewController(imagePicker, animated: true, completion: nil)
+    }
+    
+    // TODO: Allow image picker to operate in landscape or portrait
+    // http://stackoverflow.com/questions/33058691/use-uiimagepickercontroller-in-landscape-mode-in-swift-2-0
+    /*extension UIImagePickerController {
+     public override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+     return [.Landscape, .Portrait]
+     }
+     }*/
+    
+    // TODO: Respond to changes in device orientation
+    // The following is from Stackoverflow: http://stackoverflow.com/questions/25666269/ios8-swift-how-to-detect-orientation-change
+    /*func rotated() {
+     // Subscribe to observer in viewWillAppear() - NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.rotated), name: UIDeviceOrientationDidChangeNotification, object: nil)
+     
+     if(UIDeviceOrientationIsLandscape(UIDevice.currentDevice().orientation)) {
+     print(" - Landscape height = \(imageView.frame.height)")
+     }
+     
+     if(UIDeviceOrientationIsPortrait(UIDevice.currentDevice().orientation)) {
+     print(" - Portrait height = \(imageView.frame.height)")
+     }
+     }*/
+    
 }
 
