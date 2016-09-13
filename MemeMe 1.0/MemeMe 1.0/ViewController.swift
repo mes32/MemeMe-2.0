@@ -84,6 +84,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let memeTextField = textField as! MemeTextField
         if (!memeTextField.edited) {
             memeTextField.text = ""
+            memeTextField.setTextAttributesStandard()
         }
     }
     

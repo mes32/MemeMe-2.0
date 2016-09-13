@@ -11,7 +11,14 @@ import UIKit
 
 class MemeTextField: UITextField {
     
-    private let memeTextAttributes = [
+    private let grayedTextAttributes = [
+        NSFontAttributeName : UIFont(name: "HelveticaNeue-CondensedBlack", size: 36)!,
+        NSStrokeColorAttributeName : UIColor.darkGrayColor(),
+        NSForegroundColorAttributeName : UIColor.lightGrayColor(),
+        NSStrokeWidthAttributeName : -4.0
+    ]
+    
+    private let standardTextAttributes = [
         NSFontAttributeName : UIFont(name: "HelveticaNeue-CondensedBlack", size: 36)!,
         NSStrokeColorAttributeName : UIColor.blackColor(),
         NSForegroundColorAttributeName : UIColor.whiteColor(),
@@ -22,16 +29,19 @@ class MemeTextField: UITextField {
     var edited: Bool = false
     
     func setup(defaultText newDefaultText: String, delegate newDelegate: UITextFieldDelegate) {
-        defaultText = newDefaultText
-        edited = false
+        setStartingText(newDefaultText)
+        reset()
         
         delegate = newDelegate
-        text = defaultText
-        defaultTextAttributes = memeTextAttributes
         textAlignment = .Center
     }
     
+    func setStartingText(defaultText: String) {
+        self.defaultText = defaultText
+    }
+    
     func reset() {
+        setTextAttributesGrayed()
         super.text = defaultText
         edited = false
     }
@@ -39,4 +49,15 @@ class MemeTextField: UITextField {
     func wasEdited() -> Bool {
         return edited
     }
+    
+    func setTextAttributesStandard() {
+        defaultTextAttributes = standardTextAttributes
+        textAlignment = .Center
+    }
+    
+    func setTextAttributesGrayed() {
+        defaultTextAttributes = grayedTextAttributes
+        textAlignment = .Center
+    }
+    
 }
