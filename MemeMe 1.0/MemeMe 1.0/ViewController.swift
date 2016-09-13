@@ -148,7 +148,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func keyboardWillShow(notification: NSNotification) {
-        backgroundView.frame.origin.y -= getKeyboardHeight(notification)
+        if (textFieldBottom.editing) {
+            backgroundView.frame.origin.y -= getKeyboardHeight(notification)
+        }
     }
     
     func keyboardWillHide(notification: NSNotification) {
