@@ -12,7 +12,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     @IBOutlet var backgroundView: UIView!
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var saveButton: UIBarButtonItem!
+    @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
 
     @IBOutlet weak var textFieldTop: MemeTextField!
@@ -31,7 +31,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         backgroundView.backgroundColor = UIColor.grayColor()
         
         imagePicker.delegate = self
-        saveButton.enabled = false
+        shareButton.enabled = false
         cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
         
         textFieldTop.setup(defaultText: startingTextTop, delegate: textFieldDelegate)
@@ -56,7 +56,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             backgroundView.backgroundColor = UIColor.blackColor()
             imageView.image = pickedImage
             imageView.sizeToFit()
-            //imageView.sizeThatFits(<#T##size: CGSize##CGSize#>)
+            shareButton.enabled = true
         }
         
         dismissViewControllerAnimated(true, completion: nil)
@@ -97,12 +97,43 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     // - STOP - from instructor notes
 
-    @IBAction func pressedSaveButton(sender: AnyObject) {
-        print("Pressed save button")
+    @IBAction func pressedShareButton(sender: AnyObject) {
+        // Generate memed image
+        //memedImage = generateMemedImage()
+        
+        //Create the meme
+        //let meme = Meme( text: textField.text!, image:
+        //    imageView.image, memedImage: memedImage)
+        
+        // Share the meme
     }
     
+    // Generate the image with meme text
+    // - START - from instructor notes
+    /*func generateMemedImage() -> UIImage {
+     
+     // TODO: Hide toolbar and navbar
+     
+     // Render view to an image
+     UIGraphicsBeginImageContext(self.view.frame.size)
+     view.drawViewHierarchyInRect(self.view.frame,
+     afterScreenUpdates: true)
+     let memedImage : UIImage =
+     UIGraphicsGetImageFromCurrentImageContext()
+     UIGraphicsEndImageContext()
+     
+     // TODO:  Show toolbar and navbar
+     
+     return memedImage
+     }*/
+    // - STOP - from instructor notes
+    
+    // Share the meme
+    /*func shareMeme() {
+        
+    }*/
+    
     @IBAction func pressedCameraButton(sender: AnyObject) {
-        print("Pressed camera button")
         imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
         presentViewController(imagePicker, animated: true, completion: nil)    }
     

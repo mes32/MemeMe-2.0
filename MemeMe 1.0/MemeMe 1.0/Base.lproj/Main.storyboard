@@ -71,7 +71,7 @@
                                     <barButtonItem width="20" systemItem="fixedSpace" id="feb-Eu-E6F"/>
                                     <barButtonItem style="plain" systemItem="action" id="pOt-xK-U4o">
                                         <connections>
-                                            <action selector="pressedSaveButton:" destination="BYZ-38-t0r" id="Uau-Mk-GfD"/>
+                                            <action selector="pressedShareButton:" destination="BYZ-38-t0r" id="qcG-II-Evh"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -105,14 +105,14 @@
                         <outlet property="backgroundView" destination="8bC-Xf-vdC" id="dx8-RU-tpH"/>
                         <outlet property="cameraButton" destination="fpb-En-9qK" id="92W-5s-OIC"/>
                         <outlet property="imageView" destination="bef-eF-0ly" id="r1W-Ki-PAT"/>
-                        <outlet property="saveButton" destination="pOt-xK-U4o" id="S0E-ku-5G3"/>
+                        <outlet property="shareButton" destination="pOt-xK-U4o" id="I8L-BV-EuU"/>
                         <outlet property="textFieldBottom" destination="dCS-MY-dhN" id="Vfu-az-naM"/>
                         <outlet property="textFieldTop" destination="N1B-V2-QTD" id="Qsr-5e-YkC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="573" y="410"/>
+            <point key="canvasLocation" x="770" y="392"/>
         </scene>
     </scenes>
 </document>
