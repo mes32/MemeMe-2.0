@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet var backgroundView: UIView!
     @IBOutlet weak var imageView: UIImageView!
@@ -24,6 +24,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     let startingTextTop = "TOP TEXT"
     let startingTextBottom = "BOTTOM TEXT"
     
+    let textFieldDelegate = MemeTextFieldDelegate()
     let imagePicker = UIImagePickerController()
 
     override func viewDidLoad() {
@@ -38,8 +39,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         saveButton.enabled = false
         cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
         
-        textFieldTop.setup(defaultText: startingTextTop, delegate: self)
-        textFieldBottom.setup(defaultText: startingTextBottom, delegate: self)
+        textFieldTop.setup(defaultText: startingTextTop, delegate: textFieldDelegate)
+        textFieldBottom.setup(defaultText: startingTextBottom, delegate: textFieldDelegate)
     }
 
     @IBAction func pressedSaveButton(sender: AnyObject) {
@@ -77,38 +78,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func imagePickerControllerDidCancel() {
         dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    
-    func textFieldDidBeginEditing(textField: UITextField) {
-        let memeTextField = textField as! MemeTextField
-        if (!memeTextField.edited) {
-            memeTextField.text = ""
-            memeTextField.setTextAttributesStandard()
-        }
-    }
-    
-    func textFieldDidEndEditing(textField: UITextField) {
-        let memeTextField = textField as! MemeTextField
-        if (memeTextField.text == "" && memeTextField.edited) {
-            memeTextField.reset()
-        }
-    }
-    
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        let memeTextField = textField as! MemeTextField
-        memeTextField.edited = true
-        
-        // Convert typed text to uppercase
-        // The following line of code is from Stackoverflow: http://stackoverflow.com/questions/21092182/uppercase-characters-in-uitextfield
-        memeTextField.text = (memeTextField.text! as NSString).stringByReplacingCharactersInRange(range, withString:string.uppercaseString)
-        
-        return false
-    }
-    
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        self.view.endEditing(true)
-        return false
     }
     
     func rotated() {
