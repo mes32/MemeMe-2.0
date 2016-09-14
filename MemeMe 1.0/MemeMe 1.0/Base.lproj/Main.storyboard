@@ -106,13 +106,16 @@
                         <outlet property="cameraButton" destination="fpb-En-9qK" id="92W-5s-OIC"/>
                         <outlet property="imageView" destination="bef-eF-0ly" id="r1W-Ki-PAT"/>
                         <outlet property="shareButton" destination="pOt-xK-U4o" id="I8L-BV-EuU"/>
+                        <outlet property="spacerView" destination="rAc-oN-18d" id="IPK-15-Bxg"/>
                         <outlet property="textFieldBottom" destination="dCS-MY-dhN" id="Vfu-az-naM"/>
                         <outlet property="textFieldTop" destination="N1B-V2-QTD" id="Qsr-5e-YkC"/>
+                        <outlet property="toolbarBottom" destination="nIn-jZ-RfO" id="ZnC-O6-N4c"/>
+                        <outlet property="toolbarTop" destination="nQB-jR-oK4" id="xxY-Gk-Swx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="770" y="392"/>
+            <point key="canvasLocation" x="797" y="380"/>
         </scene>
     </scenes>
 </document>

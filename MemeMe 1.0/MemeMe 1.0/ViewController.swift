@@ -12,6 +12,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     @IBOutlet var backgroundView: UIView!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var spacerView: UIView!
+    @IBOutlet weak var toolbarTop: UIToolbar!
+    @IBOutlet weak var toolbarBottom: UIToolbar!
     @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
 
@@ -23,6 +26,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     let textFieldDelegate = MemeTextFieldDelegate()
     let imagePicker = UIImagePickerController()
+    
+    struct Meme {
+        var textTop: String
+        var textBottom: String
+        var image: UIImage!
+        var memedImage: UIImage
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -99,34 +109,43 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
     @IBAction func pressedShareButton(sender: AnyObject) {
         // Generate memed image
-        //memedImage = generateMemedImage()
+        let memedImage = generateMemedImage()
         
         //Create the meme
-        //let meme = Meme( text: textField.text!, image:
-        //    imageView.image, memedImage: memedImage)
+        let meme = Meme( textTop: textFieldTop.text!, textBottom: textFieldBottom.text!, image: imageView.image, memedImage: memedImage)
         
         // Share the meme
     }
     
     // Generate the image with meme text
     // - START - from instructor notes
-    /*func generateMemedImage() -> UIImage {
+    func generateMemedImage() -> UIImage {
      
-     // TODO: Hide toolbar and navbar
+        hideToolbars()
      
-     // Render view to an image
-     UIGraphicsBeginImageContext(self.view.frame.size)
-     view.drawViewHierarchyInRect(self.view.frame,
-     afterScreenUpdates: true)
-     let memedImage : UIImage =
-     UIGraphicsGetImageFromCurrentImageContext()
-     UIGraphicsEndImageContext()
+        // Render view to an image
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        view.drawViewHierarchyInRect(self.view.frame, afterScreenUpdates: true)
+        let memedImage : UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
      
-     // TODO:  Show toolbar and navbar
+        showToolbars()
      
-     return memedImage
-     }*/
+        return memedImage
+     }
     // - STOP - from instructor notes
+    
+    func hideToolbars() {
+        spacerView.hidden = true
+        toolbarTop.hidden = true
+        toolbarBottom.hidden = true
+    }
+    
+    func showToolbars() {
+        spacerView.hidden = false
+        toolbarTop.hidden = false
+        toolbarBottom.hidden = false
+    }
     
     // Share the meme
     /*func shareMeme() {
