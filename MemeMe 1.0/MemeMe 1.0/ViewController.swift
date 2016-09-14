@@ -111,17 +111,28 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         // Generate memed image
         let memedImage = generateMemedImage()
         
+        // Share meme
+        let items = [memedImage]
+        let avc = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        // I got the following line from Stackoverflow: http://stackoverflow.com/questions/32930662/uiactivityviewcontroller-error-after-migration-to-swift-2
+        avc.completionWithItemsHandler = { (s: String?, ok: Bool, items: [AnyObject]?, err:NSError?) -> Void in }
+        avc.popoverPresentationController?.sourceView = sender as! UIView
+        self.presentViewController(avc, animated: true, completion: { self.save(memedImage) })
+    }
+    
+    
+    func save(memedImage: UIImage) {
+        print("save()")
         //Create the meme
-        let meme = Meme( textTop: textFieldTop.text!, textBottom: textFieldBottom.text!, image: imageView.image, memedImage: memedImage)
-        
-        // Share the meme
+        //let meme = Meme( textTop: textFieldTop.text!, textBottom: textFieldBottom.text!, image: imageView.image, memedImage: memedImage)
+        UIImageWriteToSavedPhotosAlbum(memedImage, nil, nil, nil)
     }
     
     // Generate the image with meme text
     // - START - from instructor notes
     func generateMemedImage() -> UIImage {
      
-        hideToolbars()
+        hideExtraElements()
      
         // Render view to an image
         UIGraphicsBeginImageContext(self.view.frame.size)
@@ -129,22 +140,30 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let memedImage : UIImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
      
-        showToolbars()
+        showExtraElements()
      
         return memedImage
      }
     // - STOP - from instructor notes
     
-    func hideToolbars() {
+    func hideExtraElements() {
         spacerView.hidden = true
         toolbarTop.hidden = true
         toolbarBottom.hidden = true
+        if (!textFieldTop.edited) {
+            textFieldTop.hidden = true
+        }
+        if (!textFieldBottom.edited) {
+            textFieldBottom.hidden = true
+        }
     }
     
-    func showToolbars() {
+    func showExtraElements() {
         spacerView.hidden = false
         toolbarTop.hidden = false
         toolbarBottom.hidden = false
+        textFieldTop.hidden = false
+        textFieldBottom.hidden = false
     }
     
     // Share the meme
