@@ -15,6 +15,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var spacerView: UIView!
     @IBOutlet weak var toolbarTop: UIToolbar!
     @IBOutlet weak var toolbarBottom: UIToolbar!
+    
     @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
 
@@ -108,7 +109,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     // - STOP - from instructor notes
 
     @IBAction func pressedShareButton(sender: AnyObject) {
-        // Generate memed image
+        // Generate the memed-image
         let memedImage = generateMemedImage()
         
         // Share meme
@@ -123,8 +124,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func save(memedImage: UIImage) {
         print("save()")
-        //Create the meme
-        //let meme = Meme( textTop: textFieldTop.text!, textBottom: textFieldBottom.text!, image: imageView.image, memedImage: memedImage)
+        //Create the meme and save the memed-image
+        let meme = Meme( textTop: textFieldTop.text!, textBottom: textFieldBottom.text!, image: imageView.image, memedImage: memedImage)
         UIImageWriteToSavedPhotosAlbum(memedImage, nil, nil, nil)
     }
     
@@ -166,11 +167,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         textFieldBottom.hidden = false
     }
     
-    // Share the meme
-    /*func shareMeme() {
-        
-    }*/
-    
     @IBAction func pressedCameraButton(sender: AnyObject) {
         imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
         presentViewController(imagePicker, animated: true, completion: nil)    }
@@ -201,6 +197,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
      print(" - Portrait height = \(imageView.frame.height)")
      }
      }*/
+    
+    // TODO: Animate changes to constraints
+    // The following is from Stackoverflow: http://stackoverflow.com/questions/28127259/how-to-update-the-constant-of-a-constraint-programmatically-in-swift
+    /*self.view.layoutIfNeeded()
+        UIView.animateWithDuration(1, animations: {
+        self.sampleConstraint.constant = 20
+        self.view.layoutIfNeeded()
+    })*/
     
 }
 
