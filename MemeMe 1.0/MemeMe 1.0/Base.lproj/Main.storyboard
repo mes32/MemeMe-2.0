@@ -74,6 +74,13 @@
                                             <action selector="pressedShareButton:" destination="BYZ-38-t0r" id="qcG-II-Evh"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem systemItem="flexibleSpace" id="dAL-vY-Gxv"/>
+                                    <barButtonItem title="Cancel" id="bGl-8e-Hq7">
+                                        <connections>
+                                            <action selector="pressedCancelButton:" destination="BYZ-38-t0r" id="i1p-Zw-4PC"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="20" systemItem="fixedSpace" id="fGj-Re-91L"/>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -115,7 +122,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1221" y="278"/>
+            <point key="canvasLocation" x="1048" y="280"/>
         </scene>
     </scenes>
 </document>

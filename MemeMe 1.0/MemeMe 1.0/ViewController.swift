@@ -24,9 +24,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     let startingTextTop = "TOP TEXT"
     let startingTextBottom = "BOTTOM TEXT"
+    let defaultBackgroundColor = UIColor.grayColor()
     
     let textFieldDelegate = MemeTextFieldDelegate()
     let imagePicker = UIImagePickerController()
+    //let imagePickerDelegate = MemeImagePickerControllerDelegate()
     
     struct Meme {
         var textTop: String
@@ -39,7 +41,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        backgroundView.backgroundColor = UIColor.grayColor()
+        backgroundView.backgroundColor = defaultBackgroundColor
         
         imagePicker.delegate = self
         shareButton.enabled = false
@@ -64,6 +66,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            print("Picked Image")
             backgroundView.backgroundColor = UIColor.blackColor()
             imageView.image = pickedImage
             imageView.sizeToFit()
@@ -77,7 +80,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    // Implement subscribe to keyboard notifications so that the view can move up to accomodate keyboard
+    // Implement responses to keyboard notifications.
+    // Allows the view can move up to accomodate keyboard.
     // - START - from instructor notes
     func subscribeToKeyboardNotifications() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
@@ -108,6 +112,16 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     // - STOP - from instructor notes
 
+    @IBAction func pressedCancelButton(sender: AnyObject) {
+        shareButton.enabled = false
+        
+        textFieldTop.reset()
+        textFieldBottom.reset()
+        
+        imageView.image = nil
+        backgroundView.backgroundColor = defaultBackgroundColor
+    }
+    
     @IBAction func pressedShareButton(sender: AnyObject) {
         // Generate the memed-image
         let memedImage = generateMemedImage()
@@ -124,9 +138,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func save(memedImage: UIImage) {
         //Create the meme and save the memed-image
-        
-        // TODO: Creating this struct was in the instructor notes, but I am not sure what to use it for
-        //let meme = Meme( textTop: textFieldTop.text!, textBottom: textFieldBottom.text!, image: imageView.image, memedImage: memedImage)
+        let meme = Meme( textTop: textFieldTop.text!, textBottom: textFieldBottom.text!, image: imageView.image, memedImage: memedImage)
         
         UIImageWriteToSavedPhotosAlbum(memedImage, nil, nil, nil)
     }
@@ -135,15 +147,22 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     // - START - from instructor notes
     func generateMemedImage() -> UIImage {
      
-        hideExtraElements()
+        hideOverlay()
         
-        //var imageRect = getImageRect()
         UIGraphicsBeginImageContext(view.frame.size)
         view.drawViewHierarchyInRect(view.frame, afterScreenUpdates: true)
         let memedImage : UIImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
+        
+        // TODO: Only select the image instead of the whole screen
+        // Note: This requires that meme text is moved such that it is always above the image
+        /*let imageRect = getImageRect()
+        UIGraphicsBeginImageContext(imageRect.size)
+        view.drawViewHierarchyInRect(imageRect, afterScreenUpdates: true)
+        let memedImage : UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()*/
      
-        showExtraElements()
+        showOverlay()
      
         return memedImage
      }
@@ -151,7 +170,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func getImageRect() -> CGRect {
         // From Stackoverflow but pretty heavily modified: http://stackoverflow.com/questions/2351002/know-the-real-bounds-of-an-image-in-uiimageview
-        // - START -
         
         let viewX: CGFloat = imageView.frame.origin.x
         let viewY: CGFloat = imageView.frame.origin.y
@@ -186,10 +204,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             return imageRect
 
         }
-        // - STOP -
     }
     
-    func hideExtraElements() {
+    func hideOverlay() {
         spacerView.hidden = true
         toolbarTop.hidden = true
         toolbarBottom.hidden = true
@@ -201,7 +218,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     
-    func showExtraElements() {
+    func showOverlay() {
         spacerView.hidden = false
         toolbarTop.hidden = false
         toolbarBottom.hidden = false
