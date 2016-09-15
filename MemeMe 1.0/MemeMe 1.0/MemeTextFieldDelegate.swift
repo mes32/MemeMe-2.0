@@ -15,13 +15,14 @@ class MemeTextFieldDelegate: NSObject, UITextFieldDelegate {
         let memeTextField = textField as! MemeTextField
         if (!memeTextField.edited) {
             memeTextField.text = ""
-            memeTextField.setTextAttributesStandard()
         }
+        
+        memeTextField.setTextAttributesStandard()
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
         let memeTextField = textField as! MemeTextField
-        if (memeTextField.text == "" && memeTextField.edited) {
+        if (memeTextField.text == "") {
             memeTextField.reset()
         }
     }
