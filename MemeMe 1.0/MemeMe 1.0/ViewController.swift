@@ -123,9 +123,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     
     func save(memedImage: UIImage) {
-        print("save()")
         //Create the meme and save the memed-image
-        let meme = Meme( textTop: textFieldTop.text!, textBottom: textFieldBottom.text!, image: imageView.image, memedImage: memedImage)
+        
+        // TODO: Creating this struct was in the instructor notes, but I am not sure what to use it for
+        //let meme = Meme( textTop: textFieldTop.text!, textBottom: textFieldBottom.text!, image: imageView.image, memedImage: memedImage)
+        
         UIImageWriteToSavedPhotosAlbum(memedImage, nil, nil, nil)
     }
     
@@ -134,10 +136,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func generateMemedImage() -> UIImage {
      
         hideExtraElements()
-     
-        // Render view to an image
-        UIGraphicsBeginImageContext(self.view.frame.size)
-        view.drawViewHierarchyInRect(self.view.frame, afterScreenUpdates: true)
+        
+        //var imageRect = getImageRect()
+        UIGraphicsBeginImageContext(view.frame.size)
+        view.drawViewHierarchyInRect(view.frame, afterScreenUpdates: true)
         let memedImage : UIImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
      
@@ -146,6 +148,46 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         return memedImage
      }
     // - STOP - from instructor notes
+    
+    func getImageRect() -> CGRect {
+        // From Stackoverflow but pretty heavily modified: http://stackoverflow.com/questions/2351002/know-the-real-bounds-of-an-image-in-uiimageview
+        // - START -
+        
+        let viewX: CGFloat = imageView.frame.origin.x
+        let viewY: CGFloat = imageView.frame.origin.y
+        let viewWidth: CGFloat = imageView.frame.width
+        let viewHeight: CGFloat = imageView.frame.height
+        
+        if let image: UIImage = imageView.image! as UIImage {
+            
+            var imageX: CGFloat = 0.0
+            var imageY: CGFloat = 0.0
+            let imageWidth: CGFloat = image.size.width
+            let imageHeight: CGFloat = image.size.height
+            
+            let ratioX: CGFloat = viewWidth / imageWidth
+            let ratioY: CGFloat = viewHeight / imageHeight
+            
+            if ( ratioX < ratioY ) {
+                imageX = viewX
+                imageY = viewY + ((viewHeight - ratioX*imageHeight) / 2)
+            } else {
+                imageX = viewX + ((viewWidth - ratioY*imageWidth) / 2)
+                imageY = viewY
+            }
+            
+            let offsetX = imageX - viewX
+            let offsetY = imageY - viewY
+            let dispImageWidth = viewWidth - 2*offsetX
+            let dispImageHeight = viewHeight - 2*offsetY
+            
+            let imageRect = CGRect(x: imageX, y: imageY, width: dispImageWidth, height: dispImageHeight)
+            
+            return imageRect
+
+        }
+        // - STOP -
+    }
     
     func hideExtraElements() {
         spacerView.hidden = true
