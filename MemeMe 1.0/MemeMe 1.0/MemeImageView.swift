@@ -11,15 +11,30 @@ import UIKit
 
 class MemeImageView: UIImageView, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    var backgroundView: UIImageView?
-    var shareButton: UIButton?
-    var imagePicker: UIImagePickerController?
+    let defaultBackgroundColor = UIColor.grayColor()
     
-    func configure(background: UIImageView, shareButton: UIButton) {
+    var backgroundView: UIView!
+    var shareButton: UIBarButtonItem!
+    var imagePicker: UIImagePickerController!
+    
+    func configure(background: UIView, shareButton: UIBarButtonItem) {
         self.backgroundView = background
+        
+        self.backgroundView.backgroundColor = defaultBackgroundColor
+        
         self.shareButton = shareButton
         self.imagePicker = UIImagePickerController()
         self.imagePicker!.delegate = self
+    }
+    
+    func setImageFromCamera(viewController: ViewController) {
+        self.imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
+        viewController.presentViewController(imagePicker, animated: true, completion: nil)
+    }
+    
+    func setImageFromAlbum(viewController: ViewController) {
+        imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        viewController.presentViewController(imagePicker, animated: true, completion: nil)
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {

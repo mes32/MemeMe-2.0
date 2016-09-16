@@ -8,10 +8,10 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ViewController: UIViewController {
     
     @IBOutlet var backgroundView: UIView!
-    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var imageView: MemeImageView!
     @IBOutlet weak var spacerView: UIView!
     @IBOutlet weak var toolbarTop: UIToolbar!
     @IBOutlet weak var toolbarBottom: UIToolbar!
@@ -39,13 +39,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
-        backgroundView.backgroundColor = defaultBackgroundColor
-        
-        imagePicker.delegate = self
         shareButton.enabled = false
         cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
+        
+        imageView.configure(backgroundView, shareButton: shareButton)
         
         textFieldTop.setup(defaultText: startingTextTop, delegate: textFieldDelegate)
         textFieldBottom.setup(defaultText: startingTextBottom, delegate: textFieldDelegate)
@@ -63,21 +61,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         unsubscribeFromKeyboardNotifications()
     }
     // - STOP - from instructor notes
-    
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            backgroundView.backgroundColor = UIColor.blackColor()
-            imageView.image = pickedImage
-            imageView.sizeToFit()
-            shareButton.enabled = true
-        }
-        
-        dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    func imagePickerControllerDidCancel() {
-        dismissViewControllerAnimated(true, completion: nil)
-    }
     
     // Implement responses to keyboard notifications.
     // Allows the view can move up to accomodate keyboard.
@@ -189,12 +172,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     @IBAction func pressedCameraButton(sender: AnyObject) {
-        imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
-        presentViewController(imagePicker, animated: true, completion: nil)    }
+        imageView.setImageFromCamera(self)
+    }
     
     @IBAction func pressedPhotoAlbumButton(sender: AnyObject) {
-        imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-        presentViewController(imagePicker, animated: true, completion: nil)
+        imageView.setImageFromAlbum(self)
     }
     
     // TODO: Allow image picker to operate in landscape or portrait

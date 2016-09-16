@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bef-eF-0ly">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bef-eF-0ly" customClass="MemeImageView" customModule="MemeMe_1_0" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="60" width="600" height="500"/>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="[Top MemeTextField]" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="N1B-V2-QTD" customClass="MemeTextField" customModule="MemeMe_1_0" customModuleProvider="target">
@@ -111,7 +111,7 @@
                     <connections>
                         <outlet property="backgroundView" destination="8bC-Xf-vdC" id="dx8-RU-tpH"/>
                         <outlet property="cameraButton" destination="fpb-En-9qK" id="92W-5s-OIC"/>
-                        <outlet property="imageView" destination="bef-eF-0ly" id="r1W-Ki-PAT"/>
+                        <outlet property="imageView" destination="bef-eF-0ly" id="fgN-6d-Z7z"/>
                         <outlet property="shareButton" destination="pOt-xK-U4o" id="I8L-BV-EuU"/>
                         <outlet property="spacerView" destination="rAc-oN-18d" id="IPK-15-Bxg"/>
                         <outlet property="textFieldBottom" destination="dCS-MY-dhN" id="Vfu-az-naM"/>
