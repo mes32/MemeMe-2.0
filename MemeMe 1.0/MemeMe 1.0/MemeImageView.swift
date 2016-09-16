@@ -9,22 +9,22 @@
 import Foundation
 import UIKit
 
-class MemeImageView: UIImageView, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class MemeImageView: UIImageView {
     
     let defaultBackgroundColor = UIColor.grayColor()
     let chosenBackgroundColor = UIColor.blackColor()
     
     var backgroundView: UIView!
     var shareButton: UIBarButtonItem!
-    var imagePicker: UIImagePickerController!
+    var imagePicker: MemeImagePickerController!
     
     func configure(background: UIView, shareButton: UIBarButtonItem) {
         self.backgroundView = background
         self.backgroundView.backgroundColor = defaultBackgroundColor
         self.shareButton = shareButton
         
-        self.imagePicker = UIImagePickerController()
-        self.imagePicker!.delegate = self
+        self.imagePicker = MemeImagePickerController()
+        self.imagePicker.configure(self)
     }
     
     func pickImage(pickedImage: UIImage) {
@@ -35,25 +35,11 @@ class MemeImageView: UIImageView, UIImagePickerControllerDelegate, UINavigationC
     }
     
     func getImageFromCamera(viewController: ViewController) {
-        self.imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
-        viewController.presentViewController(imagePicker, animated: true, completion: nil)
+        imagePicker.setImage(viewController, sourceType: UIImagePickerControllerSourceType.Camera)
     }
     
     func getImageFromAlbum(viewController: ViewController) {
-        imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-        viewController.presentViewController(imagePicker, animated: true, completion: nil)
-    }
-    
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            self.pickImage(pickedImage)
-        }
-        
-        self.imagePicker!.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    func imagePickerControllerDidCancel() {
-        self.imagePicker!.dismissViewControllerAnimated(true, completion: nil)
+        imagePicker.setImage(viewController, sourceType: UIImagePickerControllerSourceType.PhotoLibrary)
     }
     
     func getImageRect() -> CGRect {
