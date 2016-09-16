@@ -11,18 +11,26 @@ import UIKit
 
 class MemeTextField: UITextField {
     
+    private static let helvetica: String = "HelveticaNeue-CondensedBlack"
+    private static let fontSize: CGFloat = 36
+    private static let standardLine: UIColor = UIColor.blackColor()
+    private static let standardFill: UIColor = UIColor.whiteColor()
+    private static let grayedLine: UIColor = UIColor.darkGrayColor()
+    private static let grayedFill: UIColor = UIColor.lightGrayColor()
+    private static let strokeWidth: Double = -4.0
+    
     private let grayedTextAttributes = [
-        NSFontAttributeName : UIFont(name: "HelveticaNeue-CondensedBlack", size: 36)!,
-        NSStrokeColorAttributeName : UIColor.darkGrayColor(),
-        NSForegroundColorAttributeName : UIColor.lightGrayColor(),
-        NSStrokeWidthAttributeName : -4.0
+        NSFontAttributeName : UIFont(name: helvetica, size: fontSize)!,
+        NSStrokeColorAttributeName : grayedLine,
+        NSForegroundColorAttributeName : grayedFill,
+        NSStrokeWidthAttributeName : strokeWidth
     ]
     
     private let standardTextAttributes = [
-        NSFontAttributeName : UIFont(name: "HelveticaNeue-CondensedBlack", size: 36)!,
-        NSStrokeColorAttributeName : UIColor.blackColor(),
-        NSForegroundColorAttributeName : UIColor.whiteColor(),
-        NSStrokeWidthAttributeName : -4.0
+        NSFontAttributeName : UIFont(name: helvetica, size: fontSize)!,
+        NSStrokeColorAttributeName : standardLine,
+        NSForegroundColorAttributeName : standardFill,
+        NSStrokeWidthAttributeName : strokeWidth
     ]
     
     var defaultText: String = ""

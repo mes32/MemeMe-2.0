@@ -22,7 +22,7 @@ class MemeTextFieldDelegate: NSObject, UITextFieldDelegate {
     
     func textFieldDidEndEditing(textField: UITextField) {
         let memeTextField = textField as! MemeTextField
-        if (memeTextField.text == "") {
+        if (memeTextField.text!.isEmpty) {
             memeTextField.reset()
         }
     }

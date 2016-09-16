@@ -12,6 +12,7 @@ import UIKit
 class MemeImageView: UIImageView, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     let defaultBackgroundColor = UIColor.grayColor()
+    let chosenBackgroundColor = UIColor.blackColor()
     
     var backgroundView: UIView!
     var shareButton: UIBarButtonItem!
@@ -24,6 +25,7 @@ class MemeImageView: UIImageView, UIImagePickerControllerDelegate, UINavigationC
         
         self.shareButton = shareButton
         self.imagePicker = UIImagePickerController()
+        
         self.imagePicker!.delegate = self
     }
     
@@ -39,7 +41,7 @@ class MemeImageView: UIImageView, UIImagePickerControllerDelegate, UINavigationC
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            backgroundView!.backgroundColor = UIColor.blackColor()
+            backgroundView!.backgroundColor = chosenBackgroundColor
             self.image = pickedImage
             self.sizeToFit()
             shareButton!.enabled = true
