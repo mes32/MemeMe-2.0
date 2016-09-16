@@ -20,31 +20,33 @@ class MemeImageView: UIImageView, UIImagePickerControllerDelegate, UINavigationC
     
     func configure(background: UIView, shareButton: UIBarButtonItem) {
         self.backgroundView = background
-        
         self.backgroundView.backgroundColor = defaultBackgroundColor
-        
         self.shareButton = shareButton
-        self.imagePicker = UIImagePickerController()
         
+        self.imagePicker = UIImagePickerController()
         self.imagePicker!.delegate = self
     }
     
-    func setImageFromCamera(viewController: ViewController) {
+    func pickImage(pickedImage: UIImage) {
+        self.image = pickedImage
+        self.sizeToFit()
+        backgroundView!.backgroundColor = chosenBackgroundColor
+        shareButton!.enabled = true
+    }
+    
+    func getImageFromCamera(viewController: ViewController) {
         self.imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
         viewController.presentViewController(imagePicker, animated: true, completion: nil)
     }
     
-    func setImageFromAlbum(viewController: ViewController) {
+    func getImageFromAlbum(viewController: ViewController) {
         imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
         viewController.presentViewController(imagePicker, animated: true, completion: nil)
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            backgroundView!.backgroundColor = chosenBackgroundColor
-            self.image = pickedImage
-            self.sizeToFit()
-            shareButton!.enabled = true
+            self.pickImage(pickedImage)
         }
         
         self.imagePicker!.dismissViewControllerAnimated(true, completion: nil)

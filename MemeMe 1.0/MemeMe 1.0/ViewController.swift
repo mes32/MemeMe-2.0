@@ -172,11 +172,11 @@ class ViewController: UIViewController {
     }
     
     @IBAction func pressedCameraButton(sender: AnyObject) {
-        imageView.setImageFromCamera(self)
+        imageView.getImageFromCamera(self)
     }
     
     @IBAction func pressedPhotoAlbumButton(sender: AnyObject) {
-        imageView.setImageFromAlbum(self)
+        imageView.getImageFromAlbum(self)
     }
     
     // TODO: Allow image picker to operate in landscape or portrait
