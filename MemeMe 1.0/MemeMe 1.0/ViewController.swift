@@ -10,6 +10,8 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    // MARK: - Outlets from storyboard
+    
     @IBOutlet var backgroundView: UIView!
     @IBOutlet weak var imageView: MemeImageView!
     @IBOutlet weak var spacerView: UIView!
@@ -22,6 +24,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var textFieldTop: MemeTextField!
     @IBOutlet weak var textFieldBottom: MemeTextField!
     
+    // MARK: - Class attributes
+    
     let startingTextTop = "TOP TEXT"
     let startingTextBottom = "BOTTOM TEXT"
     let defaultBackgroundColor = UIColor.grayColor()
@@ -29,6 +33,8 @@ class ViewController: UIViewController {
     let textFieldDelegate = MemeTextFieldDelegate()
     let imagePicker = UIImagePickerController()
 
+    // MARK: - Class methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -85,6 +91,8 @@ class ViewController: UIViewController {
         return keyboardSize.CGRectValue().height
     }
     // - STOP - from instructor notes
+    
+    // MARK: - Actions from storyboard and helper functions
 
     @IBAction func pressedCancelButton(sender: AnyObject) {
         shareButton.enabled = false

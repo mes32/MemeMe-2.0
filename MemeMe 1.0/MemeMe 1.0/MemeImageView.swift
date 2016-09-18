@@ -11,12 +11,18 @@ import UIKit
 
 class MemeImageView: UIImageView {
     
+    // MARK: - Constant default colors for the background behind the meme
+    
     let defaultBackgroundColor = UIColor.grayColor()
     let chosenBackgroundColor = UIColor.blackColor()
+    
+    // MARK: - Class attributes
     
     var backgroundView: UIView!
     var shareButton: UIBarButtonItem!
     var imagePicker: MemeImagePickerController!
+    
+    // MARK: - General class methods
     
     func configure(background: UIView, shareButton: UIBarButtonItem) {
         self.backgroundView = background
@@ -33,6 +39,8 @@ class MemeImageView: UIImageView {
         backgroundView!.backgroundColor = chosenBackgroundColor
         shareButton!.enabled = true
     }
+    
+    // MARK: - Methods for choosing images from either the camera or photo album
     
     func getImageFromCamera(viewController: ViewController) {
         imagePicker.setImage(viewController, sourceType: UIImagePickerControllerSourceType.Camera)

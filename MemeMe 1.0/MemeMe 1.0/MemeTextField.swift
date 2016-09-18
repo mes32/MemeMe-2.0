@@ -11,6 +11,8 @@ import UIKit
 
 class MemeTextField: UITextField {
     
+    // MARK: - Define the style of text in the textfield
+    
     private static let helvetica: String = "HelveticaNeue-CondensedBlack"
     private static let fontSize: CGFloat = 36
     private static let standardLine: UIColor = UIColor.blackColor()
@@ -33,8 +35,12 @@ class MemeTextField: UITextField {
         NSStrokeWidthAttributeName : strokeWidth
     ]
     
+    // MARK: - Define the initial state of the textfield
+    
     var defaultText: String = ""
     var edited: Bool = false
+    
+    // MARK: - Implement custom class methods
     
     func setup(defaultText newDefaultText: String, delegate newDelegate: UITextFieldDelegate) {
         setStartingText(newDefaultText)
@@ -53,6 +59,8 @@ class MemeTextField: UITextField {
         super.text = defaultText
         edited = false
     }
+    
+    // MARK: - Implement methods inherited from UITextField
     
     func wasEdited() -> Bool {
         return edited

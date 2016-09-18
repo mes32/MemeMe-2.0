@@ -11,6 +11,8 @@ import UIKit
 
 class MemeTextFieldDelegate: NSObject, UITextFieldDelegate {
     
+    // MARK: - Implement methods inherited from UITextFieldDelegate
+    
     func textFieldDidBeginEditing(textField: UITextField) {
         let memeTextField = textField as! MemeTextField
         if (!memeTextField.edited) {

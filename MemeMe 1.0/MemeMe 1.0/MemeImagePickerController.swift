@@ -11,7 +11,11 @@ import UIKit
 
 class MemeImagePickerController: UIImagePickerController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    // MARK: - Define class attributes
+    
     var imageView: MemeImageView!
+    
+    // MARK: - Define class method
     
     func configure(imageView: MemeImageView) {
         self.imageView = imageView
@@ -22,6 +26,8 @@ class MemeImagePickerController: UIImagePickerController, UIImagePickerControlle
         self.sourceType = sourceType
         viewController.presentViewController(self, animated: true, completion: nil)
     }
+    
+    // MARK: - Define class methods inherited from UIImagePickerController
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
             if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
