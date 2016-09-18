@@ -42,11 +42,11 @@ class MemeImageView: UIImageView {
     
     // MARK: - Methods for choosing images from either the camera or photo album
     
-    func getImageFromCamera(viewController: ViewController) {
+    func getImageFromCamera(viewController: EditMemeViewController) {
         imagePicker.setImage(viewController, sourceType: UIImagePickerControllerSourceType.Camera)
     }
     
-    func getImageFromAlbum(viewController: ViewController) {
+    func getImageFromAlbum(viewController: EditMemeViewController) {
         imagePicker.setImage(viewController, sourceType: UIImagePickerControllerSourceType.PhotoLibrary)
     }
     

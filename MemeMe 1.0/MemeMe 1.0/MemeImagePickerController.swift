@@ -22,7 +22,7 @@ class MemeImagePickerController: UIImagePickerController, UIImagePickerControlle
         self.delegate = self
     }
     
-    func setImage(viewController: ViewController, sourceType: UIImagePickerControllerSourceType) {
+    func setImage(viewController: EditMemeViewController, sourceType: UIImagePickerControllerSourceType) {
         self.sourceType = sourceType
         viewController.presentViewController(self, animated: true, completion: nil)
     }
