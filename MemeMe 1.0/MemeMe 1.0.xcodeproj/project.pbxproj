@@ -17,6 +17,7 @@
 		83EA926F1D7C8638003901B6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83EA926D1D7C8638003901B6 /* LaunchScreen.storyboard */; };
 		83EA927A1D7C8638003901B6 /* MemeMe_1_0Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EA92791D7C8638003901B6 /* MemeMe_1_0Tests.swift */; };
 		83EA92851D7C8638003901B6 /* MemeMe_1_0UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EA92841D7C8638003901B6 /* MemeMe_1_0UITests.swift */; };
+		83ECC7B61D8E305C001FE4CE /* MemeStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83ECC7B51D8E305C001FE4CE /* MemeStruct.swift */; };
 		83FAF2011D8434F9005F68C0 /* MemeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FAF2001D8434F9005F68C0 /* MemeTextField.swift */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +55,7 @@
 		83EA92801D7C8638003901B6 /* MemeMe 1.0UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MemeMe 1.0UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		83EA92841D7C8638003901B6 /* MemeMe_1_0UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeMe_1_0UITests.swift; sourceTree = "<group>"; };
 		83EA92861D7C8638003901B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		83ECC7B51D8E305C001FE4CE /* MemeStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemeStruct.swift; sourceTree = "<group>"; };
 		83FAF2001D8434F9005F68C0 /* MemeTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemeTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -115,6 +117,7 @@
 				8365A67D1D8824B3001E72F7 /* MemeTextFieldDelegate.swift */,
 				83BFB6AB1D8B7F0E00A79295 /* MemeImageView.swift */,
 				83BFB6AD1D8B7F3000A79295 /* MemeImagePickerController.swift */,
+				83ECC7B51D8E305C001FE4CE /* MemeStruct.swift */,
 			);
 			path = "MemeMe 1.0";
 			sourceTree = "<group>";
@@ -270,6 +273,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				83BFB6AC1D8B7F0E00A79295 /* MemeImageView.swift in Sources */,
+				83ECC7B61D8E305C001FE4CE /* MemeStruct.swift in Sources */,
 				83EA92671D7C8637003901B6 /* ViewController.swift in Sources */,
 				83EA92651D7C8637003901B6 /* AppDelegate.swift in Sources */,
 				8365A67E1D8824B3001E72F7 /* MemeTextFieldDelegate.swift in Sources */,
