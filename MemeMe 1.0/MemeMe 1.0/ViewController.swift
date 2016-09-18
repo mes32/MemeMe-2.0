@@ -28,14 +28,6 @@ class ViewController: UIViewController {
     
     let textFieldDelegate = MemeTextFieldDelegate()
     let imagePicker = UIImagePickerController()
-    //let imagePickerDelegate = MemeImagePickerControllerDelegate()
-    
-    struct Meme {
-        var textTop: String
-        var textBottom: String
-        var image: UIImage!
-        var memedImage: UIImage
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -121,7 +113,7 @@ class ViewController: UIViewController {
     func save(memedImage: UIImage) {
         //Create the meme and save the memed-image
         // TODO: Meme needs to take MemeTextFields and handle properly if they are unedited
-        //let meme = Meme( textTop: textFieldTop.text!, textBottom: textFieldBottom.text!, image: imageView.image, memedImage: memedImage)
+        let meme = Meme( textTop: textFieldTop.text!, textBottom: textFieldBottom.text!, image: imageView.image, memedImage: memedImage)
         
         UIImageWriteToSavedPhotosAlbum(memedImage, nil, nil, nil)
     }
