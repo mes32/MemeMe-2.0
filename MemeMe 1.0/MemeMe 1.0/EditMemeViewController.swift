@@ -77,7 +77,7 @@ class EditMemeViewController: UIViewController {
     
     func keyboardWillShow(notification: NSNotification) {
         if (textFieldBottom.editing) {
-            backgroundView.frame.origin.y -= getKeyboardHeight(notification)
+            view.frame.origin.y = getKeyboardHeight(notification) * -1
         }
     }
     
