@@ -19,25 +19,25 @@ class MemeImageView: UIImageView {
     // MARK: - Class attributes
     
     var backgroundView: UIView!
-    var shareButton: UIBarButtonItem!
+    var button: UIBarButtonItem!
     var imagePicker: MemeImagePickerController!
     
     // MARK: - General class methods
     
     func configure(background: UIView, shareButton: UIBarButtonItem) {
-        self.backgroundView = background
-        self.backgroundView.backgroundColor = defaultBackgroundColor
-        self.shareButton = shareButton
+        backgroundView = background
+        backgroundView.backgroundColor = defaultBackgroundColor
+        button = shareButton
         
-        self.imagePicker = MemeImagePickerController()
-        self.imagePicker.configure(self)
+        imagePicker = MemeImagePickerController()
+        imagePicker.configure(self)
     }
     
     func pickImage(pickedImage: UIImage) {
-        self.image = pickedImage
-        self.sizeToFit()
+        image = pickedImage
+        sizeToFit()
         backgroundView!.backgroundColor = chosenBackgroundColor
-        shareButton!.enabled = true
+        button!.enabled = true
     }
     
     // MARK: - Methods for choosing images from either the camera or photo album
@@ -53,12 +53,12 @@ class MemeImageView: UIImageView {
     func getImageRect() -> CGRect {
         // From Stackoverflow but pretty heavily modified: http://stackoverflow.com/questions/2351002/know-the-real-bounds-of-an-image-in-uiimageview
         
-        let viewX: CGFloat = self.frame.origin.x
-        let viewY: CGFloat = self.frame.origin.y
-        let viewWidth: CGFloat = self.frame.width
-        let viewHeight: CGFloat = self.frame.height
+        let viewX: CGFloat = frame.origin.x
+        let viewY: CGFloat = frame.origin.y
+        let viewWidth: CGFloat = frame.width
+        let viewHeight: CGFloat = frame.height
         
-        if let image: UIImage = self.image! as UIImage {
+        if let image: UIImage = image! as UIImage {
             
             var imageX: CGFloat = 0.0
             var imageY: CGFloat = 0.0

@@ -13,13 +13,13 @@ class MemeImagePickerController: UIImagePickerController, UIImagePickerControlle
     
     // MARK: - Define class attributes
     
-    var imageView: MemeImageView!
+    var memeImageView: MemeImageView!
     
     // MARK: - Define class method
     
     func configure(imageView: MemeImageView) {
-        self.imageView = imageView
-        self.delegate = self
+        memeImageView = imageView
+        delegate = self
     }
     
     func setImage(viewController: EditMemeViewController, sourceType: UIImagePickerControllerSourceType) {
@@ -31,13 +31,13 @@ class MemeImagePickerController: UIImagePickerController, UIImagePickerControlle
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
             if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-                imageView.pickImage(pickedImage)
+                memeImageView.pickImage(pickedImage)
             }
             
-            self.dismissViewControllerAnimated(true, completion: nil)
+            dismissViewControllerAnimated(true, completion: nil)
     }
     
     func imagePickerControllerDidCancel() {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        dismissViewControllerAnimated(true, completion: nil)
     }
 }

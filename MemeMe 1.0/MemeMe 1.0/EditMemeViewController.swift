@@ -114,7 +114,7 @@ class EditMemeViewController: UIViewController {
         // I got the following line from Stackoverflow: http://stackoverflow.com/questions/32930662/uiactivityviewcontroller-error-after-migration-to-swift-2
         avc.completionWithItemsHandler = { (s: String?, ok: Bool, items: [AnyObject]?, err:NSError?) -> Void in }
         avc.popoverPresentationController?.sourceView = sender as! UIView
-        self.presentViewController(avc, animated: true, completion: { self.save(memedImage) })
+        presentViewController(avc, animated: true, completion: { self.save(memedImage) })
     }
     
     
