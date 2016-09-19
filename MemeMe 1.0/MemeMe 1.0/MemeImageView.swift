@@ -11,6 +11,13 @@ import UIKit
 
 class MemeImageView: UIImageView {
     
+    // MARK: - Define image offset struct
+    
+    struct ImageOffset {
+        var x: CGFloat
+        var y: CGFloat
+    }
+    
     // MARK: - Constant default colors for the background behind the meme
     
     let defaultBackgroundColor = UIColor.grayColor()
@@ -50,8 +57,8 @@ class MemeImageView: UIImageView {
         imagePicker.setImage(viewController, sourceType: UIImagePickerControllerSourceType.PhotoLibrary)
     }
     
-    func getImageRect() -> CGRect {
-        // From Stackoverflow but pretty heavily modified: http://stackoverflow.com/questions/2351002/know-the-real-bounds-of-an-image-in-uiimageview
+    func getImageOffsets() -> ImageOffset {
+        // From Stackoverflow: http://stackoverflow.com/questions/2351002/know-the-real-bounds-of-an-image-in-uiimageview
         
         let viewX: CGFloat = frame.origin.x
         let viewY: CGFloat = frame.origin.y
@@ -65,25 +72,21 @@ class MemeImageView: UIImageView {
             let imageWidth: CGFloat = image.size.width
             let imageHeight: CGFloat = image.size.height
             
-            let ratioX: CGFloat = viewWidth / imageWidth
-            let ratioY: CGFloat = viewHeight / imageHeight
+            let scaleFactorX: CGFloat = viewWidth / imageWidth
+            let scaleFactorY: CGFloat = viewHeight / imageHeight
             
-            if ( ratioX < ratioY ) {
+            if ( scaleFactorX < scaleFactorY ) {
                 imageX = viewX
-                imageY = viewY + ((viewHeight - ratioX*imageHeight) / 2)
+                imageY = viewY + ((viewHeight - scaleFactorX*imageHeight) / 2)
             } else {
-                imageX = viewX + ((viewWidth - ratioY*imageWidth) / 2)
+                imageX = viewX + ((viewWidth - scaleFactorY*imageWidth) / 2)
                 imageY = viewY
             }
             
             let offsetX = imageX - viewX
             let offsetY = imageY - viewY
-            let dispImageWidth = viewWidth - 2*offsetX
-            let dispImageHeight = viewHeight - 2*offsetY
             
-            let imageRect = CGRect(x: imageX, y: imageY, width: dispImageWidth, height: dispImageHeight)
-            
-            return imageRect
+            return ImageOffset(x: offsetX, y: offsetY)
             
         }
     }

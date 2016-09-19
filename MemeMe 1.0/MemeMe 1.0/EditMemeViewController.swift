@@ -26,6 +26,10 @@ class EditMemeViewController: UIViewController {
     
     // MARK: - Class attributes
     
+    var topChromeHeight: CGFloat = 0.0
+    var bottomChromeHeight: CGFloat = 0.0
+    var sideChromeWidth: CGFloat = 0.0
+    
     let startingTextTop = "TOP TEXT"
     let startingTextBottom = "BOTTOM TEXT"
     let defaultBackgroundColor = UIColor.grayColor()
@@ -45,6 +49,10 @@ class EditMemeViewController: UIViewController {
         
         textFieldTop.setup(defaultText: startingTextTop, delegate: textFieldDelegate)
         textFieldBottom.setup(defaultText: startingTextBottom, delegate: textFieldDelegate)
+        
+        topChromeHeight = toolbarTop.frame.size.height + spacerView.frame.size.height
+        bottomChromeHeight = toolbarBottom.frame.size.height
+        sideChromeWidth = 1.0
     }
     
     // Subscribe to keyboard notifications
@@ -138,19 +146,42 @@ class EditMemeViewController: UIViewController {
      
         hideOverlay()
         
-        UIGraphicsBeginImageContext(view.frame.size)
-        view.drawViewHierarchyInRect(view.frame, afterScreenUpdates: true)
-        let memedImage : UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        // Find offsets between the meme image and its ImageView
+        let imageOffsets = imageView.getImageOffsets()
+        
+        // Partial screenshot code from Stackoverflow: http://stackoverflow.com/questions/35067354/how-do-i-take-a-partial-screenshot-save-to-cameraroll
+        
+        // Declare the snapshot boundaries
+        let top: CGFloat = imageOffsets.y + topChromeHeight
+        let bottom: CGFloat = imageOffsets.y + bottomChromeHeight
+        let left: CGFloat = imageOffsets.x + sideChromeWidth
+        let right: CGFloat = imageOffsets.x + sideChromeWidth
+        
+        // The size of the cropped image
+        let size = CGSize(width: view.frame.size.width - left - right, height: view.frame.size.height - top - bottom)
+        
+        // Start the context
+        UIGraphicsBeginImageContext(size)
+        
+        // we are going to use context in a couple of places
+        let context = UIGraphicsGetCurrentContext()!
+        
+        // Transform the context so that anything drawn into it is displaced "top" pixels up
+        // Something drawn at coordinate (0, 0) will now be drawn at (0, -top)
+        // This will result in the "top" pixels being cut off
+        // The bottom pixels are cut off because the size of the of the context
+        CGContextTranslateCTM(context, -left, -top)
+        
+        // Draw the view into the context (this is the snapshot)
+        view.layer.renderInContext(context)
+        let memedImage = UIGraphicsGetImageFromCurrentImageContext()
+        
+        // End the context (this is required to not leak resources)
         UIGraphicsEndImageContext()
         
-        // TODO: Only select the image instead of the whole screen
-        // Note: This requires that meme text is moved such that it is always above the image
-        /*let imageRect = getImageRect()
-        UIGraphicsBeginImageContext(imageRect.size)
-        view.drawViewHierarchyInRect(imageRect, afterScreenUpdates: true)
-        let memedImage : UIImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()*/
-     
+        // Save to photos
+        UIImageWriteToSavedPhotosAlbum(memedImage, nil, nil, nil)
+        
         showOverlay()
      
         return memedImage
