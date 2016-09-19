@@ -112,9 +112,15 @@ class EditMemeViewController: UIViewController {
         let items = [memedImage]
         let avc = UIActivityViewController(activityItems: items, applicationActivities: nil)
         // I got the following line from Stackoverflow: http://stackoverflow.com/questions/32930662/uiactivityviewcontroller-error-after-migration-to-swift-2
-        avc.completionWithItemsHandler = { (s: String?, ok: Bool, items: [AnyObject]?, err:NSError?) -> Void in }
+        avc.completionWithItemsHandler = { (s: String?, ok: Bool, items: [AnyObject]?, err:NSError?) -> Void in
+            
+            if (ok == true) {
+                self.save(memedImage)
+            }
+            
+        }
         avc.popoverPresentationController?.sourceView = sender as! UIView
-        presentViewController(avc, animated: true, completion: { self.save(memedImage) })
+        presentViewController(avc, animated: true, completion: nil)
     }
     
     
@@ -122,7 +128,7 @@ class EditMemeViewController: UIViewController {
         //Create the meme and save the memed-image
         // TODO: Meme needs to take MemeTextFields and handle properly if they are unedited
         let meme = Meme( textTop: textFieldTop.text!, textBottom: textFieldBottom.text!, image: imageView.image, memedImage: memedImage)
-        
+                
         UIImageWriteToSavedPhotosAlbum(memedImage, nil, nil, nil)
     }
     
