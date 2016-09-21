@@ -20,15 +20,21 @@ class EditMemeViewController: UIViewController {
     
     @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
-
+    
     @IBOutlet weak var textFieldTop: MemeTextField!
     @IBOutlet weak var textFieldBottom: MemeTextField!
+    
+    @IBOutlet weak var paddingTextFieldTop: NSLayoutConstraint!
+    @IBOutlet weak var paddingTextFieldBottom: NSLayoutConstraint!
     
     // MARK: - Class attributes
     
     var topChromeHeight: CGFloat = 0.0
     var bottomChromeHeight: CGFloat = 0.0
     var sideChromeWidth: CGFloat = 0.0
+    
+    let paddingTextFieldTopDefault: CGFloat = 50.0
+    let paddingTextFieldBottomDefault: CGFloat = 50.0
     
     let startingTextTop = "TOP TEXT"
     let startingTextBottom = "BOTTOM TEXT"
@@ -45,7 +51,7 @@ class EditMemeViewController: UIViewController {
         shareButton.enabled = false
         cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
         
-        imageView.configure(backgroundView, shareButton: shareButton)
+        imageView.configure(self, background: backgroundView, shareButton: shareButton)
         
         textFieldTop.setup(defaultText: startingTextTop, delegate: textFieldDelegate)
         textFieldBottom.setup(defaultText: startingTextBottom, delegate: textFieldDelegate)
@@ -74,6 +80,8 @@ class EditMemeViewController: UIViewController {
     func subscribeToKeyboardNotifications() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EditMemeViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EditMemeViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EditMemeViewController.rotated), name: UIDeviceOrientationDidChangeNotification, object: nil)
     }
     
     func unsubscribeFromKeyboardNotifications() {
@@ -81,6 +89,8 @@ class EditMemeViewController: UIViewController {
             UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().removeObserver(self, name:
             UIKeyboardWillHideNotification, object: nil)
+        
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIDeviceOrientationDidChangeNotification, object: nil)
     }
     
     func keyboardWillShow(notification: NSNotification) {
@@ -105,11 +115,12 @@ class EditMemeViewController: UIViewController {
     @IBAction func pressedCancelButton(sender: AnyObject) {
         shareButton.enabled = false
         
-        textFieldTop.reset()
-        textFieldBottom.reset()
-        
         imageView.image = nil
         backgroundView.backgroundColor = defaultBackgroundColor
+        
+        textFieldTop.reset()
+        textFieldBottom.reset()
+        setTextFieldPadding()
     }
     
     @IBAction func pressedShareButton(sender: AnyObject) {
@@ -208,6 +219,18 @@ class EditMemeViewController: UIViewController {
         textFieldBottom.hidden = false
     }
     
+    func setTextFieldPadding() {
+        if (imageView.image == nil) {
+            paddingTextFieldTop.constant = paddingTextFieldTopDefault
+            paddingTextFieldBottom.constant = paddingTextFieldBottomDefault
+        } else {
+            let imageOffsets = imageView.getImageOffsets()
+
+            paddingTextFieldTop.constant = paddingTextFieldTopDefault + imageOffsets.y
+            paddingTextFieldBottom.constant = paddingTextFieldBottomDefault + imageOffsets.y
+        }
+    }
+    
     @IBAction func pressedCameraButton(sender: AnyObject) {
         imageView.getImageFromCamera(self)
     }
@@ -216,35 +239,9 @@ class EditMemeViewController: UIViewController {
         imageView.getImageFromAlbum(self)
     }
     
-    // TODO: Allow image picker to operate in landscape or portrait
-    // http://stackoverflow.com/questions/33058691/use-uiimagepickercontroller-in-landscape-mode-in-swift-2-0
-    /*extension UIImagePickerController {
-     public override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-     return [.Landscape, .Portrait]
+    func rotated() {
+        setTextFieldPadding()
      }
-     }*/
-    
-    // TODO: Respond to changes in device orientation
-    // The following is from Stackoverflow: http://stackoverflow.com/questions/25666269/ios8-swift-how-to-detect-orientation-change
-    /*func rotated() {
-     // Subscribe to observer in viewWillAppear() - NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.rotated), name: UIDeviceOrientationDidChangeNotification, object: nil)
-     
-     if(UIDeviceOrientationIsLandscape(UIDevice.currentDevice().orientation)) {
-     print(" - Landscape height = \(imageView.frame.height)")
-     }
-     
-     if(UIDeviceOrientationIsPortrait(UIDevice.currentDevice().orientation)) {
-     print(" - Portrait height = \(imageView.frame.height)")
-     }
-     }*/
-    
-    // TODO: Animate changes to constraints
-    // The following is from Stackoverflow: http://stackoverflow.com/questions/28127259/how-to-update-the-constant-of-a-constraint-programmatically-in-swift
-    /*self.view.layoutIfNeeded()
-        UIView.animateWithDuration(1, animations: {
-        self.sampleConstraint.constant = 20
-        self.view.layoutIfNeeded()
-    })*/
     
 }
 

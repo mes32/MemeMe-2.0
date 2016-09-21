@@ -31,7 +31,7 @@ class MemeImagePickerController: UIImagePickerController, UIImagePickerControlle
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
             if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-                memeImageView.pickImage(pickedImage)
+                memeImageView.setMemeImage(pickedImage)
             }
             
             dismissViewControllerAnimated(true, completion: nil)

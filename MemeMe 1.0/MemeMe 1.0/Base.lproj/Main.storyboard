@@ -112,6 +112,8 @@
                         <outlet property="backgroundView" destination="8bC-Xf-vdC" id="dx8-RU-tpH"/>
                         <outlet property="cameraButton" destination="fpb-En-9qK" id="92W-5s-OIC"/>
                         <outlet property="imageView" destination="bef-eF-0ly" id="fgN-6d-Z7z"/>
+                        <outlet property="paddingTextFieldBottom" destination="amE-yS-7PE" id="Bve-s4-aSS"/>
+                        <outlet property="paddingTextFieldTop" destination="08O-1v-2VZ" id="n1x-mW-veT"/>
                         <outlet property="shareButton" destination="pOt-xK-U4o" id="I8L-BV-EuU"/>
                         <outlet property="spacerView" destination="rAc-oN-18d" id="IPK-15-Bxg"/>
                         <outlet property="textFieldBottom" destination="dCS-MY-dhN" id="Vfu-az-naM"/>
@@ -122,7 +124,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1048" y="280"/>
+            <point key="canvasLocation" x="1077" y="175"/>
         </scene>
     </scenes>
 </document>

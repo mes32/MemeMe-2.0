@@ -25,13 +25,15 @@ class MemeImageView: UIImageView {
     
     // MARK: - Class attributes
     
+    var editMemeViewController: EditMemeViewController!
     var backgroundView: UIView!
     var button: UIBarButtonItem!
     var imagePicker: MemeImagePickerController!
     
     // MARK: - General class methods
     
-    func configure(background: UIView, shareButton: UIBarButtonItem) {
+    func configure(viewContoller: EditMemeViewController, background: UIView, shareButton: UIBarButtonItem) {
+        editMemeViewController = viewContoller
         backgroundView = background
         backgroundView.backgroundColor = defaultBackgroundColor
         button = shareButton
@@ -40,10 +42,9 @@ class MemeImageView: UIImageView {
         imagePicker.configure(self)
     }
     
-    func pickImage(pickedImage: UIImage) {
+    func setMemeImage(pickedImage: UIImage) {
         image = pickedImage
-        sizeToFit()
-        backgroundView!.backgroundColor = chosenBackgroundColor
+        editMemeViewController.setTextFieldPadding()
         button!.enabled = true
     }
     
@@ -77,9 +78,9 @@ class MemeImageView: UIImageView {
             
             if ( scaleFactorX < scaleFactorY ) {
                 imageX = viewX
-                imageY = viewY + ((viewHeight - scaleFactorX*imageHeight) / 2)
+                imageY = viewY + ((viewHeight - scaleFactorX*imageHeight) / 2)  // TODO: Make sure this works
             } else {
-                imageX = viewX + ((viewWidth - scaleFactorY*imageWidth) / 2)
+                imageX = viewX + ((viewWidth - scaleFactorY*imageWidth) / 2)    // TODO: Make sure this works
                 imageY = viewY
             }
             
