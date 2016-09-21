@@ -79,7 +79,11 @@ class EditMemeViewController: UIViewController {
     // - START - from instructor notes
     func subscribeToKeyboardNotifications() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EditMemeViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EditMemeViewController.keyboardDidShow(_:)), name: UIKeyboardDidShowNotification, object: nil)
+        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EditMemeViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EditMemeViewController.keyboardDidHide(_:)), name: UIKeyboardDidHideNotification, object: nil)
+        
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EditMemeViewController.rotated), name: UIDeviceOrientationDidChangeNotification, object: nil)
     }
@@ -88,19 +92,34 @@ class EditMemeViewController: UIViewController {
         NSNotificationCenter.defaultCenter().removeObserver(self, name:
             UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().removeObserver(self, name:
+            UIKeyboardDidShowNotification, object: nil)
+        
+        NSNotificationCenter.defaultCenter().removeObserver(self, name:
             UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name:
+            UIKeyboardDidHideNotification, object: nil)
         
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIDeviceOrientationDidChangeNotification, object: nil)
     }
     
     func keyboardWillShow(notification: NSNotification) {
+        shareButton.enabled = false
         if (textFieldBottom.editing) {
             view.frame.origin.y = getKeyboardHeight(notification) * -1
         }
     }
     
+    func keyboardDidShow(notification: NSNotification) {
+        setTextFieldPadding()
+    }
+    
     func keyboardWillHide(notification: NSNotification) {
         backgroundView.frame.origin.y = 0
+    }
+    
+    func keyboardDidHide(notification: NSNotification) {
+        shareButton.enabled = true
+        setTextFieldPadding()
     }
     
     func getKeyboardHeight(notification: NSNotification) -> CGFloat {
