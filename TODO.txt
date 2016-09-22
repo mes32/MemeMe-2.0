@@ -1,4 +1,4 @@
-1. Picking an image
-2. Editing and displaying text with meme-style typeface
-3. Moving the image view out of the way of the keyboard
-4. Sharing the meme image
+1. Tab bar controller (for toggling saved memes between list view and group view)
+2. Display saved memes in list
+3. Display saved memes in group
+4. Shared Model (i.e. data) between the two views
