@@ -45,6 +45,7 @@ class MemeImageView: UIImageView {
     func setMemeImage(pickedImage: UIImage) {
         image = pickedImage
         editMemeViewController.setTextFieldPadding()
+        backgroundView.backgroundColor = chosenBackgroundColor
         button!.enabled = true
     }
     
