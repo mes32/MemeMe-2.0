@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  MemeMe 1.0
+//  MemeMe 2.0
 //
 //  Created by Michael Stockman on 9/4/16.
 //  Copyright © 2016 Michael Stockman.

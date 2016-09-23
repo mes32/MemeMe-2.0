@@ -1,6 +1,6 @@
 //
-//  MemeMe_1_0UITests.swift
-//  MemeMe 1.0UITests
+//  MemeMe_2_0UITests.swift
+//  MemeMe 2.0UITests
 //
 //  Created by Michael Stockman on 9/4/16.
 //  Copyright © 2016 Michael Stockman.
@@ -8,7 +8,7 @@
 
 import XCTest
 
-class MemeMe_1_0UITests: XCTestCase {
+class MemeMe_2_0UITests: XCTestCase {
         
     override func setUp() {
         super.setUp()

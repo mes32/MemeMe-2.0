@@ -7,9 +7,9 @@
 //
 
 import XCTest
-@testable import MemeMe_1_0
+@testable import MemeMe_2_0
 
-class MemeMe_1_0Tests: XCTestCase {
+class MemeMe_2_0Tests: XCTestCase {
     
     override func setUp() {
         super.setUp()
