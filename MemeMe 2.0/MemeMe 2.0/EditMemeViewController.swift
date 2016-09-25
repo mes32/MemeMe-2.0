@@ -164,9 +164,13 @@ class EditMemeViewController: UIViewController {
     
     func save(memedImage: UIImage) {
         //Create the meme and save the memed-image
-        // TODO: Meme needs to take MemeTextFields and handle properly if they are unedited
         let meme = Meme( textTop: textFieldTop.text!, textBottom: textFieldBottom.text!, image: imageView.image, memedImage: memedImage)
-                
+        
+        // Add it to the memes array in the Application Delegate
+        let object = UIApplication.sharedApplication().delegate
+        let appDelegate = object as! AppDelegate
+        appDelegate.memes.append(meme)
+        
         UIImageWriteToSavedPhotosAlbum(memedImage, nil, nil, nil)
     }
     
