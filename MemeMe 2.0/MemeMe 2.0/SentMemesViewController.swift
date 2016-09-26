@@ -9,11 +9,17 @@
 import UIKit
 
 class SentMemesViewController: UIViewController {
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print("SentMemesViewController viewDidLoad()")
+    }
+    
+    @IBAction func editButtonPressed(sender: UIBarButtonItem) {
+        print("editButtonPresed()")
+    }
+    
+    @IBAction func addButtonPressed(sender: UIBarButtonItem) {
+        performSegueWithIdentifier("addMemeSegue", sender: nil)
     }
     
 }
