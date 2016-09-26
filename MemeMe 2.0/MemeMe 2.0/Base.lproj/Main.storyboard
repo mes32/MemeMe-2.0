@@ -31,15 +31,40 @@
                                     <segue destination="BYZ-38-t0r" kind="show" id="A5t-CM-yiF"/>
                                 </connections>
                             </button>
+                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RrF-Qq-syr">
+                                <rect key="frame" x="0.0" y="507" width="600" height="49"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <items>
+                                    <tabBarItem systemItem="mostViewed" id="iAE-Mb-BTN"/>
+                                    <tabBarItem systemItem="recents" id="Hfs-yp-3SG"/>
+                                </items>
+                            </tabBar>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fak-Bw-nNm">
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <items>
+                                    <navigationItem title="Sent Memes" id="keu-gO-Ndy">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="DFZ-rx-xGx"/>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="rGi-rB-Df5"/>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="zci-lq-rDQ" firstAttribute="centerX" secondItem="lFS-lY-o4y" secondAttribute="centerX" id="2Nt-C8-aFd"/>
                             <constraint firstItem="zci-lq-rDQ" firstAttribute="top" secondItem="04v-1l-WjX" secondAttribute="bottom" constant="168" id="3GL-ki-0ro"/>
                             <constraint firstItem="zci-lq-rDQ" firstAttribute="centerY" secondItem="lFS-lY-o4y" secondAttribute="centerY" id="6Vt-Ms-GD2"/>
+                            <constraint firstItem="fak-Bw-nNm" firstAttribute="top" secondItem="nVs-GV-cSU" secondAttribute="bottom" id="951-gV-YOw"/>
+                            <constraint firstItem="2hb-15-zzE" firstAttribute="top" secondItem="RrF-Qq-syr" secondAttribute="bottom" id="EpR-pt-7FQ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="RrF-Qq-syr" secondAttribute="trailing" constant="-20" id="Lhv-HB-iye"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="fak-Bw-nNm" secondAttribute="trailing" constant="-20" id="WT0-MD-e1j"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="fak-Bw-nNm" secondAttribute="leading" constant="20" id="cbH-1j-ZbC"/>
                             <constraint firstItem="04v-1l-WjX" firstAttribute="centerX" secondItem="lFS-lY-o4y" secondAttribute="centerX" id="kWH-Nz-dGW"/>
+                            <constraint firstItem="RrF-Qq-syr" firstAttribute="leading" secondItem="lFS-lY-o4y" secondAttribute="leadingMargin" constant="-20" id="nLo-FA-dJu"/>
                         </constraints>
                     </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wOH-Bt-oXj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
