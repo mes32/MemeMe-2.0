@@ -150,7 +150,6 @@
                                     <barButtonItem title="Cancel" id="bGl-8e-Hq7">
                                         <connections>
                                             <action selector="pressedCancelButton:" destination="BYZ-38-t0r" id="i1p-Zw-4PC"/>
-                                            <segue destination="l2X-sL-9x2" kind="show" id="VzM-oG-jzT"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem width="20" systemItem="fixedSpace" id="fGj-Re-91L"/>

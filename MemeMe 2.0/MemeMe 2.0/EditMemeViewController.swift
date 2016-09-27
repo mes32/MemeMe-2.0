@@ -140,6 +140,8 @@ class EditMemeViewController: UIViewController {
         textFieldTop.reset()
         textFieldBottom.reset()
         setTextFieldPadding()
+        
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func pressedShareButton(sender: AnyObject) {
