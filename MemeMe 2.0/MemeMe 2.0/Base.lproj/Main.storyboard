@@ -67,7 +67,7 @@
         <scene sceneID="QZU-2z-BFT">
             <objects>
                 <navigationController title="List View Navigation Controller" id="Ig9-Cd-t5b" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="List View" id="5lE-ib-b5r"/>
+                    <tabBarItem key="tabBarItem" title="List View" image="ListView" id="5lE-ib-b5r"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Hzx-j9-cWF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -84,7 +84,7 @@
         <scene sceneID="EIf-oI-Ua3">
             <objects>
                 <navigationController title="Collection View Navigation Controller" id="mwK-T1-bni" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Collection View" id="ems-fF-gTH"/>
+                    <tabBarItem key="tabBarItem" title="Collection View" image="CollectionView" id="ems-fF-gTH"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="n97-Bt-ug8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -315,4 +315,8 @@
             <point key="canvasLocation" x="641" y="9"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="CollectionView" width="30" height="30"/>
+        <image name="ListView" width="30" height="30"/>
+    </resources>
 </document>
