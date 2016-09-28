@@ -146,7 +146,9 @@ class EditMemeViewController: UIViewController {
     
     @IBAction func pressedShareButton(_ sender: AnyObject) {
         // Generate the memed-image
-        let memedImage = generateMemedImage()
+        
+        print("pressedShareButton()")
+        /*let memedImage = generateMemedImage()
         
         // Share meme
         let items = [memedImage]
@@ -163,7 +165,7 @@ class EditMemeViewController: UIViewController {
             
         }
         avc.popoverPresentationController?.sourceView = sender as? UIView
-        present(avc, animated: true, completion: nil)
+        present(avc, animated: true, completion: nil)*/
     }
     
     
