@@ -13,7 +13,7 @@ class MemeTextFieldDelegate: NSObject, UITextFieldDelegate {
     
     // MARK: - Implement methods inherited from UITextFieldDelegate
     
-    func textFieldDidBeginEditing(textField: UITextField) {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
         let memeTextField = textField as! MemeTextField
         if (!memeTextField.edited) {
             memeTextField.text = ""
@@ -22,25 +22,25 @@ class MemeTextFieldDelegate: NSObject, UITextFieldDelegate {
         memeTextField.setTextAttributesStandard()
     }
     
-    func textFieldDidEndEditing(textField: UITextField) {
+    func textFieldDidEndEditing(_ textField: UITextField) {
         let memeTextField = textField as! MemeTextField
-        if (memeTextField.text!.stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: " ")).isEmpty) {
+        if (memeTextField.text!.trimmingCharacters(in: CharacterSet(charactersIn: " ")).isEmpty) {
             memeTextField.reset()
         }
     }
     
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let memeTextField = textField as! MemeTextField
         memeTextField.edited = true
     
         // Convert typed text to uppercase
         // The following line of code is from Stackoverflow: http://stackoverflow.com/questions/21092182/uppercase-characters-in-uitextfield
-        memeTextField.text = (memeTextField.text! as NSString).stringByReplacingCharactersInRange(range, withString:string.uppercaseString)
+        memeTextField.text = (memeTextField.text! as NSString).replacingCharacters(in: range, with:string.uppercased())
     
         return false
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.endEditing(true)
         return false
     }

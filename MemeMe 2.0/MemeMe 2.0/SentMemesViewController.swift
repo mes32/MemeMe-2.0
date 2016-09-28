@@ -14,12 +14,12 @@ class SentMemesViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    @IBAction func editButtonPressed(sender: UIBarButtonItem) {
+    @IBAction func editButtonPressed(_ sender: UIBarButtonItem) {
         print("editButtonPresed()")
     }
     
-    @IBAction func addButtonPressed(sender: UIBarButtonItem) {
-        performSegueWithIdentifier("addMemeSegue", sender: nil)
+    @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "addMemeSegue", sender: nil)
     }
     
 }

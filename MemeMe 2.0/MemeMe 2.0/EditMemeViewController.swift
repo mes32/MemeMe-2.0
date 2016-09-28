@@ -38,7 +38,7 @@ class EditMemeViewController: UIViewController {
     
     let startingTextTop = "TOP TEXT"
     let startingTextBottom = "BOTTOM TEXT"
-    let defaultBackgroundColor = UIColor.grayColor()
+    let defaultBackgroundColor = UIColor.gray
     
     let textFieldDelegate = MemeTextFieldDelegate()
     let imagePicker = UIImagePickerController()
@@ -48,8 +48,8 @@ class EditMemeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        shareButton.enabled = false
-        cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
+        shareButton.isEnabled = false
+        cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera)
         
         imageView.configure(self, background: backgroundView, shareButton: shareButton)
         
@@ -63,12 +63,12 @@ class EditMemeViewController: UIViewController {
     
     // Subscribe to keyboard notifications
     // - START - from instructor notes
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         subscribeToKeyboardNotifications()
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         unsubscribeFromKeyboardNotifications()
     }
@@ -78,61 +78,61 @@ class EditMemeViewController: UIViewController {
     // Allows the view can move up to accomodate keyboard.
     // - START - from instructor notes
     func subscribeToKeyboardNotifications() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EditMemeViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EditMemeViewController.keyboardDidShow(_:)), name: UIKeyboardDidShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(EditMemeViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(EditMemeViewController.keyboardDidShow(_:)), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EditMemeViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EditMemeViewController.keyboardDidHide(_:)), name: UIKeyboardDidHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(EditMemeViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(EditMemeViewController.keyboardDidHide(_:)), name: NSNotification.Name.UIKeyboardDidHide, object: nil)
         
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EditMemeViewController.rotated), name: UIDeviceOrientationDidChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(EditMemeViewController.rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
     }
     
     func unsubscribeFromKeyboardNotifications() {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name:
-            UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name:
-            UIKeyboardDidShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name:
+            NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name:
+            NSNotification.Name.UIKeyboardDidShow, object: nil)
         
-        NSNotificationCenter.defaultCenter().removeObserver(self, name:
-            UIKeyboardWillHideNotification, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name:
-            UIKeyboardDidHideNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name:
+            NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.removeObserver(self, name:
+            NSNotification.Name.UIKeyboardDidHide, object: nil)
         
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIDeviceOrientationDidChangeNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
     }
     
-    func keyboardWillShow(notification: NSNotification) {
-        shareButton.enabled = false
-        if (textFieldBottom.editing) {
+    func keyboardWillShow(_ notification: Notification) {
+        shareButton.isEnabled = false
+        if (textFieldBottom.isEditing) {
             view.frame.origin.y = getKeyboardHeight(notification) * -1
         }
     }
     
-    func keyboardDidShow(notification: NSNotification) {
+    func keyboardDidShow(_ notification: Notification) {
         setTextFieldPadding()
     }
     
-    func keyboardWillHide(notification: NSNotification) {
+    func keyboardWillHide(_ notification: Notification) {
         backgroundView.frame.origin.y = 0
     }
     
-    func keyboardDidHide(notification: NSNotification) {
-        shareButton.enabled = true
+    func keyboardDidHide(_ notification: Notification) {
+        shareButton.isEnabled = true
         setTextFieldPadding()
     }
     
-    func getKeyboardHeight(notification: NSNotification) -> CGFloat {
-        let userInfo = notification.userInfo
+    func getKeyboardHeight(_ notification: Notification) -> CGFloat {
+        let userInfo = (notification as NSNotification).userInfo
         let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue // of CGRect
-        return keyboardSize.CGRectValue().height
+        return keyboardSize.cgRectValue.height
     }
     // - STOP - from instructor notes
     
     // MARK: - Actions from storyboard and helper functions
 
-    @IBAction func pressedCancelButton(sender: AnyObject) {
-        shareButton.enabled = false
+    @IBAction func pressedCancelButton(_ sender: AnyObject) {
+        shareButton.isEnabled = false
         
         imageView.image = nil
         backgroundView.backgroundColor = defaultBackgroundColor
@@ -141,10 +141,10 @@ class EditMemeViewController: UIViewController {
         textFieldBottom.reset()
         setTextFieldPadding()
         
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func pressedShareButton(sender: AnyObject) {
+    @IBAction func pressedShareButton(_ sender: AnyObject) {
         // Generate the memed-image
         let memedImage = generateMemedImage()
         
@@ -152,24 +152,27 @@ class EditMemeViewController: UIViewController {
         let items = [memedImage]
         let avc = UIActivityViewController(activityItems: items, applicationActivities: nil)
         // I got the following line from Stackoverflow: http://stackoverflow.com/questions/32930662/uiactivityviewcontroller-error-after-migration-to-swift-2
-        avc.completionWithItemsHandler = { (s: String?, ok: Bool, items: [AnyObject]?, err:NSError?) -> Void in
+        avc.completionWithItemsHandler = { (activityType: UIActivityType?, ok: Bool, par: [Any]?, err: Error?) -> Void in
+            
+            
+                        //UIActivityViewControllerCompletionWithItemsHandler = (UIActivityType?, Bool, [Any]?, Error?) -> Void
             
             if (ok == true) {
                 self.save(memedImage)
             }
             
         }
-        avc.popoverPresentationController?.sourceView = sender as! UIView
-        presentViewController(avc, animated: true, completion: nil)
+        avc.popoverPresentationController?.sourceView = sender as? UIView
+        present(avc, animated: true, completion: nil)
     }
     
     
-    func save(memedImage: UIImage) {
+    func save(_ memedImage: UIImage) {
         //Create the meme and save the memed-image
         let meme = Meme( textTop: textFieldTop.text!, textBottom: textFieldBottom.text!, image: imageView.image, memedImage: memedImage)
         
         // Add it to the memes array in the Application Delegate
-        let object = UIApplication.sharedApplication().delegate
+        let object = UIApplication.shared.delegate
         let appDelegate = object as! AppDelegate
         appDelegate.memes.append(meme)
         
@@ -206,42 +209,42 @@ class EditMemeViewController: UIViewController {
         // Something drawn at coordinate (0, 0) will now be drawn at (0, -top)
         // This will result in the "top" pixels being cut off
         // The bottom pixels are cut off because the size of the of the context
-        CGContextTranslateCTM(context, -left, -top)
+        context.translateBy(x: -left, y: -top)
         
         // Draw the view into the context (this is the snapshot)
-        view.layer.renderInContext(context)
+        view.layer.render(in: context)
         let memedImage = UIGraphicsGetImageFromCurrentImageContext()
         
         // End the context (this is required to not leak resources)
         UIGraphicsEndImageContext()
         
         // Save to photos
-        UIImageWriteToSavedPhotosAlbum(memedImage, nil, nil, nil)
+        UIImageWriteToSavedPhotosAlbum(memedImage!, nil, nil, nil)
         
         showOverlay()
      
-        return memedImage
+        return memedImage!
      }
     // - STOP - from instructor notes
     
     func hideOverlay() {
-        spacerView.hidden = true
-        toolbarTop.hidden = true
-        toolbarBottom.hidden = true
+        spacerView.isHidden = true
+        toolbarTop.isHidden = true
+        toolbarBottom.isHidden = true
         if (!textFieldTop.edited) {
-            textFieldTop.hidden = true
+            textFieldTop.isHidden = true
         }
         if (!textFieldBottom.edited) {
-            textFieldBottom.hidden = true
+            textFieldBottom.isHidden = true
         }
     }
     
     func showOverlay() {
-        spacerView.hidden = false
-        toolbarTop.hidden = false
-        toolbarBottom.hidden = false
-        textFieldTop.hidden = false
-        textFieldBottom.hidden = false
+        spacerView.isHidden = false
+        toolbarTop.isHidden = false
+        toolbarBottom.isHidden = false
+        textFieldTop.isHidden = false
+        textFieldBottom.isHidden = false
     }
     
     func setTextFieldPadding() {
@@ -256,11 +259,11 @@ class EditMemeViewController: UIViewController {
         }
     }
     
-    @IBAction func pressedCameraButton(sender: AnyObject) {
+    @IBAction func pressedCameraButton(_ sender: AnyObject) {
         imageView.getImageFromCamera(self)
     }
     
-    @IBAction func pressedPhotoAlbumButton(sender: AnyObject) {
+    @IBAction func pressedPhotoAlbumButton(_ sender: AnyObject) {
         imageView.getImageFromAlbum(self)
     }
     

@@ -17,27 +17,27 @@ class MemeImagePickerController: UIImagePickerController, UIImagePickerControlle
     
     // MARK: - Define class method
     
-    func configure(imageView: MemeImageView) {
+    func configure(_ imageView: MemeImageView) {
         memeImageView = imageView
         delegate = self
     }
     
-    func setImage(viewController: EditMemeViewController, sourceType: UIImagePickerControllerSourceType) {
+    func setImage(_ viewController: EditMemeViewController, sourceType: UIImagePickerControllerSourceType) {
         self.sourceType = sourceType
-        viewController.presentViewController(self, animated: true, completion: nil)
+        viewController.present(self, animated: true, completion: nil)
     }
     
     // MARK: - Define class methods inherited from UIImagePickerController
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
             if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
                 memeImageView.setMemeImage(pickedImage)
             }
             
-            dismissViewControllerAnimated(true, completion: nil)
+            dismiss(animated: true, completion: nil)
     }
     
     func imagePickerControllerDidCancel() {
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
 }

@@ -13,27 +13,27 @@ class MemeTextField: UITextField {
     
     // MARK: - Define the style of text in the textfield
     
-    private static let helvetica: String = "HelveticaNeue-CondensedBlack"
-    private static let fontSize: CGFloat = 36
-    private static let standardLine: UIColor = UIColor.blackColor()
-    private static let standardFill: UIColor = UIColor.whiteColor()
-    private static let grayedLine: UIColor = UIColor.darkGrayColor()
-    private static let grayedFill: UIColor = UIColor.lightGrayColor()
-    private static let strokeWidth: Double = -4.0
+    fileprivate static let helvetica: String = "HelveticaNeue-CondensedBlack"
+    fileprivate static let fontSize: CGFloat = 36
+    fileprivate static let standardLine: UIColor = UIColor.black
+    fileprivate static let standardFill: UIColor = UIColor.white
+    fileprivate static let grayedLine: UIColor = UIColor.darkGray
+    fileprivate static let grayedFill: UIColor = UIColor.lightGray
+    fileprivate static let strokeWidth: Double = -4.0
     
-    private let grayedTextAttributes = [
+    fileprivate let grayedTextAttributes = [
         NSFontAttributeName : UIFont(name: helvetica, size: fontSize)!,
         NSStrokeColorAttributeName : grayedLine,
         NSForegroundColorAttributeName : grayedFill,
         NSStrokeWidthAttributeName : strokeWidth
-    ]
+    ] as [String : Any]
     
-    private let standardTextAttributes = [
+    fileprivate let standardTextAttributes = [
         NSFontAttributeName : UIFont(name: helvetica, size: fontSize)!,
         NSStrokeColorAttributeName : standardLine,
         NSForegroundColorAttributeName : standardFill,
         NSStrokeWidthAttributeName : strokeWidth
-    ]
+    ] as [String : Any]
     
     // MARK: - Define the initial state of the textfield
     
@@ -47,10 +47,10 @@ class MemeTextField: UITextField {
         reset()
         
         delegate = newDelegate
-        textAlignment = .Center
+        textAlignment = .center
     }
     
-    func setStartingText(defaultText: String) {
+    func setStartingText(_ defaultText: String) {
         self.defaultText = defaultText
     }
     
@@ -68,12 +68,12 @@ class MemeTextField: UITextField {
     
     func setTextAttributesStandard() {
         defaultTextAttributes = standardTextAttributes
-        textAlignment = .Center
+        textAlignment = .center
     }
     
     func setTextAttributesGrayed() {
         defaultTextAttributes = grayedTextAttributes
-        textAlignment = .Center
+        textAlignment = .center
     }
     
 }

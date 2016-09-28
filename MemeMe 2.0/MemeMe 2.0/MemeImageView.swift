@@ -20,8 +20,8 @@ class MemeImageView: UIImageView {
     
     // MARK: - Constant default colors for the background behind the meme
     
-    let defaultBackgroundColor = UIColor.grayColor()
-    let chosenBackgroundColor = UIColor.blackColor()
+    let defaultBackgroundColor = UIColor.gray
+    let chosenBackgroundColor = UIColor.black
     
     // MARK: - Class attributes
     
@@ -32,7 +32,7 @@ class MemeImageView: UIImageView {
     
     // MARK: - General class methods
     
-    func configure(viewContoller: EditMemeViewController, background: UIView, shareButton: UIBarButtonItem) {
+    func configure(_ viewContoller: EditMemeViewController, background: UIView, shareButton: UIBarButtonItem) {
         editMemeViewController = viewContoller
         backgroundView = background
         backgroundView.backgroundColor = defaultBackgroundColor
@@ -42,21 +42,21 @@ class MemeImageView: UIImageView {
         imagePicker.configure(self)
     }
     
-    func setMemeImage(pickedImage: UIImage) {
+    func setMemeImage(_ pickedImage: UIImage) {
         image = pickedImage
         editMemeViewController.setTextFieldPadding()
         backgroundView.backgroundColor = chosenBackgroundColor
-        button!.enabled = true
+        button!.isEnabled = true
     }
     
     // MARK: - Methods for choosing images from either the camera or photo album
     
-    func getImageFromCamera(viewController: EditMemeViewController) {
-        imagePicker.setImage(viewController, sourceType: UIImagePickerControllerSourceType.Camera)
+    func getImageFromCamera(_ viewController: EditMemeViewController) {
+        imagePicker.setImage(viewController, sourceType: UIImagePickerControllerSourceType.camera)
     }
     
-    func getImageFromAlbum(viewController: EditMemeViewController) {
-        imagePicker.setImage(viewController, sourceType: UIImagePickerControllerSourceType.PhotoLibrary)
+    func getImageFromAlbum(_ viewController: EditMemeViewController) {
+        imagePicker.setImage(viewController, sourceType: UIImagePickerControllerSourceType.photoLibrary)
     }
     
     func getImageOffsets() -> ImageOffset {
