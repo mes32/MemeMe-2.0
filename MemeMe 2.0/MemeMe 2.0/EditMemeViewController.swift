@@ -148,7 +148,9 @@ class EditMemeViewController: UIViewController {
         // Generate the memed-image
         
         print("pressedShareButton()")
-        /*let memedImage = generateMemedImage()
+        let memedImage = generateMemedImage()
+        print("--- generateMemedImage")
+
         
         // Share meme
         let items = [memedImage]
@@ -156,16 +158,13 @@ class EditMemeViewController: UIViewController {
         // I got the following line from Stackoverflow: http://stackoverflow.com/questions/32930662/uiactivityviewcontroller-error-after-migration-to-swift-2
         avc.completionWithItemsHandler = { (activityType: UIActivityType?, ok: Bool, par: [Any]?, err: Error?) -> Void in
             
-            
-                        //UIActivityViewControllerCompletionWithItemsHandler = (UIActivityType?, Bool, [Any]?, Error?) -> Void
-            
             if (ok == true) {
                 self.save(memedImage)
             }
             
         }
         avc.popoverPresentationController?.sourceView = sender as? UIView
-        present(avc, animated: true, completion: nil)*/
+        present(avc, animated: true, completion: nil)
     }
     
     
@@ -203,29 +202,36 @@ class EditMemeViewController: UIViewController {
         
         // Start the context
         UIGraphicsBeginImageContext(size)
-        
+                
         // we are going to use context in a couple of places
+        if UIGraphicsGetCurrentContext() == nil {
+            print("UIGraphicsGetCurrentContext() == nil")
+        }
         let context = UIGraphicsGetCurrentContext()!
-        
+            
         // Transform the context so that anything drawn into it is displaced "top" pixels up
         // Something drawn at coordinate (0, 0) will now be drawn at (0, -top)
         // This will result in the "top" pixels being cut off
         // The bottom pixels are cut off because the size of the of the context
         context.translateBy(x: -left, y: -top)
-        
+            
         // Draw the view into the context (this is the snapshot)
         view.layer.render(in: context)
         let memedImage = UIGraphicsGetImageFromCurrentImageContext()
-        
+             
         // End the context (this is required to not leak resources)
         UIGraphicsEndImageContext()
-        
+             
         // Save to photos
+        if (memedImage == nil) {
+            print("memedImage == nil")
+        }
         UIImageWriteToSavedPhotosAlbum(memedImage!, nil, nil, nil)
-        
+
         showOverlay()
-     
+             
         return memedImage!
+
      }
     // - STOP - from instructor notes
     

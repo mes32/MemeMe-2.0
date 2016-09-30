@@ -29,21 +29,21 @@
         <!--Sent Memes List-->
         <scene sceneID="OuY-2h-U7T">
             <objects>
-                <tableViewController title="Sent Memes List" id="V9I-gu-XH0" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="m2U-9q-Fo8">
+                <tableViewController title="Sent Memes List" id="V9I-gu-XH0" customClass="SentMemesTableViewController" customModule="MemeMe_2_0" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="115" sectionHeaderHeight="28" sectionFooterHeight="28" id="m2U-9q-Fo8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MemeListCellReuseIdentifier" textLabel="OAg-Gw-FWL" style="IBUITableViewCellStyleDefault" id="jos-9d-072">
-                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MemeTableCell" textLabel="OAg-Gw-FWL" rowHeight="115" style="IBUITableViewCellStyleDefault" id="jos-9d-072">
+                                <rect key="frame" x="0.0" y="92" width="375" height="115"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jos-9d-072" id="zkC-An-BS5">
-                                    <frame key="frameInset" width="375" height="43"/>
+                                    <frame key="frameInset" width="375" height="114"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OAg-Gw-FWL">
-                                            <frame key="frameInset" minX="15" width="345" height="43"/>
+                                            <frame key="frameInset" minX="15" width="345" height="114"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
                                             <nil key="textColor"/>
@@ -59,7 +59,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Sent Memes List" id="BeU-8p-44I">
-                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="edit" id="zqN-mw-ArN"/>
+                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="edit" id="zqN-mw-ArN">
+                            <connections>
+                                <action selector="pressedEditButton:" destination="V9I-gu-XH0" id="4Oi-ZV-KE5"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="flR-CR-jha">
                             <connections>
                                 <segue destination="BYZ-38-t0r" kind="popoverPresentation" popoverAnchorBarButtonItem="flR-CR-jha" id="jds-eX-ZJt">
@@ -72,7 +76,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q0j-R6-zL6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-999" y="-364"/>
+            <point key="canvasLocation" x="-999.20000000000005" y="-364.7676161919041"/>
         </scene>
         <!--List View Navigation Controller-->
         <scene sceneID="QZU-2z-BFT">
@@ -271,6 +275,6 @@
         <image name="ListView" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Umc-7e-sJ4"/>
+        <segue reference="jds-eX-ZJt"/>
     </inferredMetricsTieBreakers>
 </document>
