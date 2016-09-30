@@ -200,8 +200,20 @@ class EditMemeViewController: UIViewController {
         // The size of the cropped image
         let size = CGSize(width: view.frame.size.width - left - right, height: view.frame.size.height - top - bottom)
         
+        print("top:    \(top)")
+        print("bottom: \(bottom)")
+        print("left:   \(left)")
+        print("right:  \(right)")
+        
+        
+        UIGraphicsBeginImageContext(view.frame.size)
+        view.layer.render(in: UIGraphicsGetCurrentContext()!)
+        let memedImage = UIGraphicsGetImageFromCurrentImageContext()
+
+        
+        
         // Start the context
-        UIGraphicsBeginImageContext(size)
+        /*UIGraphicsBeginImageContext(size)
                 
         // we are going to use context in a couple of places
         if UIGraphicsGetCurrentContext() == nil {
@@ -228,7 +240,7 @@ class EditMemeViewController: UIViewController {
         }
         UIImageWriteToSavedPhotosAlbum(memedImage!, nil, nil, nil)
 
-        showOverlay()
+        showOverlay()*/
              
         return memedImage!
 
