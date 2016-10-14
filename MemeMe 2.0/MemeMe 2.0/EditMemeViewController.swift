@@ -21,6 +21,10 @@ class EditMemeViewController: UIViewController {
     @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     
+    @IBOutlet weak var topToolBarHeight: NSLayoutConstraint!
+    @IBOutlet weak var bottomToolBarHeight: NSLayoutConstraint!
+    @IBOutlet weak var spacerBarHeight: NSLayoutConstraint!
+    
     @IBOutlet weak var textFieldTop: MemeTextField!
     @IBOutlet weak var textFieldBottom: MemeTextField!
     
@@ -28,10 +32,6 @@ class EditMemeViewController: UIViewController {
     @IBOutlet weak var paddingTextFieldBottom: NSLayoutConstraint!
     
     // MARK: - Class attributes
-    
-    var topChromeHeight: CGFloat = 0.0
-    var bottomChromeHeight: CGFloat = 0.0
-    var sideChromeWidth: CGFloat = 0.0
     
     let paddingTextFieldTopDefault: CGFloat = 50.0
     let paddingTextFieldBottomDefault: CGFloat = 50.0
@@ -55,10 +55,6 @@ class EditMemeViewController: UIViewController {
         
         textFieldTop.setup(defaultText: startingTextTop, delegate: textFieldDelegate)
         textFieldBottom.setup(defaultText: startingTextBottom, delegate: textFieldDelegate)
-        
-        topChromeHeight = toolbarTop.frame.size.height + spacerView.frame.size.height
-        bottomChromeHeight = toolbarBottom.frame.size.height
-        sideChromeWidth = 1.0
     }
     
     // Subscribe to keyboard notifications
@@ -147,10 +143,7 @@ class EditMemeViewController: UIViewController {
     @IBAction func pressedShareButton(_ sender: AnyObject) {
         // Generate the memed-image
         
-        print("pressedShareButton()")
         let memedImage = generateMemedImage()
-        print("--- generateMemedImage")
-
         
         // Share meme
         let items = [memedImage]
@@ -183,6 +176,9 @@ class EditMemeViewController: UIViewController {
     // Generate the image with meme text
     // - START - from instructor notes
     func generateMemedImage() -> UIImage {
+        
+        let topChromeHeight = topToolBarHeight.constant - spacerBarHeight.constant
+        let bottomChromeHeight = bottomToolBarHeight.constant
      
         hideOverlay()
         
@@ -194,31 +190,16 @@ class EditMemeViewController: UIViewController {
         // Declare the snapshot boundaries
         let top: CGFloat = imageOffsets.y + topChromeHeight
         let bottom: CGFloat = imageOffsets.y + bottomChromeHeight
-        let left: CGFloat = imageOffsets.x + sideChromeWidth
-        let right: CGFloat = imageOffsets.x + sideChromeWidth
+        let left: CGFloat = imageOffsets.x
+        let right: CGFloat = imageOffsets.x
         
         // The size of the cropped image
         let size = CGSize(width: view.frame.size.width - left - right, height: view.frame.size.height - top - bottom)
         
-        print("top:    \(top)")
-        print("bottom: \(bottom)")
-        print("left:   \(left)")
-        print("right:  \(right)")
-        
-        
-        UIGraphicsBeginImageContext(view.frame.size)
-        view.layer.render(in: UIGraphicsGetCurrentContext()!)
-        let memedImage = UIGraphicsGetImageFromCurrentImageContext()
-
-        
-        
         // Start the context
-        /*UIGraphicsBeginImageContext(size)
+        UIGraphicsBeginImageContext(size)
                 
         // we are going to use context in a couple of places
-        if UIGraphicsGetCurrentContext() == nil {
-            print("UIGraphicsGetCurrentContext() == nil")
-        }
         let context = UIGraphicsGetCurrentContext()!
             
         // Transform the context so that anything drawn into it is displaced "top" pixels up
@@ -235,12 +216,12 @@ class EditMemeViewController: UIViewController {
         UIGraphicsEndImageContext()
              
         // Save to photos
-        if (memedImage == nil) {
-            print("memedImage == nil")
-        }
-        UIImageWriteToSavedPhotosAlbum(memedImage!, nil, nil, nil)
+        //if (memedImage == nil) {
+        //    print("memedImage == nil")
+        //}
+        //UIImageWriteToSavedPhotosAlbum(memedImage!, nil, nil, nil)
 
-        showOverlay()*/
+        showOverlay()
              
         return memedImage!
 

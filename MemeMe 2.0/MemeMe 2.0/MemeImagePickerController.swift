@@ -30,7 +30,7 @@ class MemeImagePickerController: UIImagePickerController, UIImagePickerControlle
     // MARK: - Define class methods inherited from UIImagePickerController
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-            if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
                 memeImageView.setMemeImage(pickedImage)
             }
             

@@ -74,14 +74,14 @@ class MemeImageView: UIImageView {
             let imageWidth: CGFloat = image.size.width
             let imageHeight: CGFloat = image.size.height
             
-            let scaleFactorX: CGFloat = viewWidth / imageWidth
-            let scaleFactorY: CGFloat = viewHeight / imageHeight
+            let scaleImageToViewX: CGFloat = viewWidth / imageWidth
+            let scaleImageToViewY: CGFloat = viewHeight / imageHeight
             
-            if ( scaleFactorX < scaleFactorY ) {
+            if ( scaleImageToViewX < scaleImageToViewY ) {
                 imageX = viewX
-                imageY = viewY + ((viewHeight - scaleFactorX*imageHeight) / 2)  // TODO: Make sure this works
+                imageY = viewY + ((viewHeight - scaleImageToViewX*imageHeight) / 2)
             } else {
-                imageX = viewX + ((viewWidth - scaleFactorY*imageWidth) / 2)    // TODO: Make sure this works
+                imageX = viewX + ((viewWidth - scaleImageToViewY*imageWidth) / 2)
                 imageY = viewY
             }
             
